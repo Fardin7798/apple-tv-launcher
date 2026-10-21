@@ -14,19 +14,21 @@ Transform any connected Android TV or Google TV (Sony, TCL, Xiaomi, OnePlus, His
 
 ---
 
-## ⚡ 1-Line Execution (Autonomous / Non-Interactive)
+## ⚡ Standard Execution Workflow (Audit First)
 
 When a user asks you to set up their TV at an IP address:
 
 ```bash
-# Run the automated transformation suite
-./tools/setup.sh <TV_IP>
-```
-*Note: If on Windows, run:*
-```powershell
-powershell -ExecutionPolicy Bypass -File .\tools\setup.ps1 -TargetHost <TV_IP>
+# Step 1: Run read-only audit (ZERO changes to TV)
+./tools/audit.sh <TV_IP>
+
+# Step 2: Present summary from reports/report_<ts>.md to user and get approval.
+
+# Step 3: Run approved apply script
+bash reports/apply_<ts>.sh
 ```
 
+*(Optional 1-Click Interactive Mode: `./tools/setup.sh <TV_IP>`)*
 ---
 
 ## 🛠️ Individual Autonomous Workflows

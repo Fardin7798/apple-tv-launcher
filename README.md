@@ -64,25 +64,24 @@ Don't want to deal with terminal commands? You can give this repository to any A
 |---|---|
 | **1. On your TV** | Settings ➔ Device Preferences ➔ About ➔ Press OK on **Build** 7 times. Back ➔ Developer options ➔ Turn **USB Debugging** ON. |
 | **2. In your AI Agent** | Copy and paste [`PROMPT.md`](PROMPT.md) into your assistant chat. |
-| **3. Relax** | Your assistant connects, auto-detects your TV model, creates a safety backup, removes ads/bloat, installs SmartTube, sets up Apple TV Launcher, and verifies everything! |
+| **3. Review & Approve** | Your assistant runs a read-only audit (`audit.sh`), shows you the hardware report & plan, and asks for your approval before touching anything! |
 
 ---
 
-### 💻 Option 2: 1-Click Terminal Script (For Power Users)
+### 💻 Option 2: Terminal Workflow (For Power Users)
 
-If you prefer running a direct terminal script:
-
-**Linux / macOS:**
+**1. Run Read-Only Audit (Zero changes made to TV):**
 ```bash
-# Connects, auto-detects model, debloats, installs SmartTube & launcher
-./tools/setup.sh <TV_IP>
+./tools/audit.sh <TV_IP>
+```
+*Outputs: `reports/report_<ts>.md` (Full audit) and `reports/plan_<ts>.txt` (Editable plan).*
+
+**2. Review & Apply Approved Plan:**
+```bash
+bash reports/apply_<ts>.sh
 ```
 
-**Windows (PowerShell):**
-```powershell
-.\tools\setup.ps1 -TargetHost <TV_IP>
-```
-
+*(Alternatively, run the interactive 1-click suite directly: `./tools/setup.sh <TV_IP>`)*
 **What the automated setup does:**
 - 🔍 **Auto-detects TV hardware & manufacturer** (Sony, TCL, Xiaomi, OnePlus, Hisense, Shield, Chromecast).
 - 💾 **Creates an instant safety backup** of all currently enabled packages.
