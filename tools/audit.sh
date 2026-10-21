@@ -128,8 +128,8 @@ ENABLED_PKGS=$(tv pm list packages -e | sed 's/package://' | sort)
 DISABLED_PKGS=$(tv pm list packages -d | sed 's/package://' | sort)
 SYSTEM_PKGS=$(tv pm list packages -s | sed 's/package://' | sort)
 USER_PKGS=$(tv pm list packages -3 | sed 's/package://' | sort)
-TOTAL=$(echo "$ALL_PKGS" | grep -v '^$' | wc -l)
-DISABLED_COUNT=$(echo "$DISABLED_PKGS" | grep -v '^$' | wc -l)
+TOTAL=$(printf '%s\n' "$ALL_PKGS" | grep -c . || true)
+DISABLED_COUNT=$(printf '%s\n' "$DISABLED_PKGS" | grep -c . || true)
 
 # Protected packages — NEVER touch these
 PROTECTED="com.google.android.apps.mediashell
@@ -144,6 +144,8 @@ com.google.android.gsf
 android
 com.google.android.tv.frameworkpackagestubs
 com.google.android.tungsten.setupwraith
+com.google.android.setupwizard
+com.appletv.launcher
 com.google.android.tvlauncher
 com.google.android.apps.tv.launcherx
 com.google.android.leanbacklauncher"
@@ -205,19 +207,15 @@ if [ -f "$SELECTED_PROFILE" ]; then
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# SECTION 7: USAGE STATS (apps not opened in 6+ months → strong remove candidate)
-# ═══════════════════════════════════════════════════════════════════════════════
 echo "==> [7/7] Reading app usage stats..."
-USAGE_RAW=$(tv dumpsys usagestats 2>/dev/null | grep -E 'package=|lastTimeUsed=' | paste - - | \
-            sed 's/.*package=\([^ ]*\).*lastTimeUsed=\([0-9]*\).*/\1 \2/' | sort || true)
-NOW_MS=$(($(date +%s) * 1000))
-SIX_MONTHS_MS=$((180 * 24 * 3600 * 1000))
 STALE_PKGS=()
-while IFS=' ' read -r pkg last_ms; do
-    [ -z "$pkg" ] || [ -z "$last_ms" ] && continue
-    AGE=$(( NOW_MS - last_ms ))
-    [ "$AGE" -gt "$SIX_MONTHS_MS" ] && STALE_PKGS+=("$pkg")
-done <<< "$USAGE_RAW"
+USAGE_RAW=$(tv dumpsys usagestats 2>/dev/null || true)
+if [ -n "$USAGE_RAW" ]; then
+    while IFS= read -r line; do
+        pkg=$(echo "$line" | sed -n 's/.*package=\([^ "]*\).*/\1/p')
+        [ -n "$pkg" ] && STALE_PKGS+=("$pkg")
+    done < <(echo "$USAGE_RAW" | grep -E 'lastTime="197[0-9]|totalTime="00:00"' | head -n 10 || true)
+fi
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # WRITE REPORT.MD
@@ -282,7 +280,9 @@ ${HDMI_PKGS}
 \`\`\`
 
 > [!IMPORTANT]
-> The setup wizard \`com.google.android.tungsten.setupwraith\` can claim Home after a launcher
+> The setup wizard \`com.google.android.tungsten.setupwraith
+com.google.android.setupwizard
+com.appletv.launcher\` can claim Home after a launcher
 > switch on Google TV 14. If present, add it to your debloat profile first and run audit again.
 
 ---
@@ -446,79 +446,15 @@ PLAN2
 # GENERATE apply.sh FROM plan.txt  (called when user is ready)
 # ═══════════════════════════════════════════════════════════════════════════════
 generate_apply() {
-local PLAN_FILE="$1"
-local APPLY_FILE="$2"
-local ADB_DEV="$3"
-local BACKUP_DIR="$ROOT_DIR/backups"
-{
-cat << APPLYHDR
+    local PLAN_FILE="$1"
+    local APPLY_FILE="$2"
+    local ADB_DEV="$3"
+    cat << APPLYHDR > "$APPLY_FILE"
 #!/usr/bin/env bash
-# apply.sh — generated from $(basename "$PLAN_FILE")
-# Run only after reviewing and approving the plan above.
-set -euo pipefail
-DEV="$ADB_DEV"
-ROOT_DIR="$ROOT_DIR"
+# apply runner dynamically executing $(basename "$PLAN_FILE")
+exec "$ROOT_DIR/tools/apply.sh" "$PLAN_FILE" "$ADB_DEV"
 APPLYHDR
-
-echo "mkdir -p \"$BACKUP_DIR\""
-echo "BACKUP_FILE=\"$BACKUP_DIR/backup_\$(date +%Y%m%d_%H%M%S).txt\""
-echo "echo '==> Creating safety backup...'"
-echo "adb -s \"\$DEV\" shell pm list packages -e | sed 's/package://' | sort > \"\$BACKUP_FILE\""
-echo "echo \"Backup saved: \$BACKUP_FILE\""
-echo ""
-
-while IFS= read -r line || [ -n "$line" ]; do
-    case "$line" in
-        \[x\]\ DISABLE\ *)
-            PKG="${line#\[x\] DISABLE }"
-            PKG="${PKG%% *}"
-            [ -z "$PKG" ] && continue
-            echo "echo '==> Disabling: $PKG'"
-            echo "adb -s \"\$DEV\" shell pm disable-user --user 0 \"$PKG\" >/dev/null 2>&1 || true"
-            ;;
-        \[x\]\ DISABLE_YOUTUBE)
-            echo "echo '==> Disabling stock YouTube...'"
-            echo "adb -s \"\$DEV\" shell pm disable-user --user 0 com.google.android.youtube.tv >/dev/null 2>&1 || true"
-            echo "adb -s \"\$DEV\" shell pm disable-user --user 0 com.google.android.youtube.tvmusic >/dev/null 2>&1 || true"
-            ;;
-        \[x\]\ INSTALL_SMARTTUBE)
-            echo "echo '==> Installing SmartTube...'"
-            echo "\"$SCRIPT_DIR/get_smarttube.sh\" \"\$DEV\""
-            ;;
-        \[x\]\ INSTALL_LAUNCHER)
-            echo ""
-            echo "# ── Launcher install with safety handover ──"
-            echo "APK=\"$ROOT_DIR/app/build/outputs/apk/release/app-release.apk\""
-            echo "[ ! -f \"\$APK\" ] && curl -sSL -f -o \"\$APK\" https://github.com/Fardin7798/apple-tv-launcher/releases/latest/download/app-release.apk"
-            echo "INSTALL_OUT=\$(adb -s \"\$DEV\" install -r \"\$APK\" 2>&1)"
-            echo "echo \"\$INSTALL_OUT\""
-            echo "case \"\$INSTALL_OUT\" in *Success*) ;; *) echo 'ERROR: install failed'; exit 1 ;; esac"
-            echo "HOME_QUERY='cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.HOME'"
-            echo "STOCK=\$(adb -s \"\$DEV\" shell \$HOME_QUERY 2>/dev/null | tail -n 1 | tr -d '\r' | cut -d/ -f1 || true)"
-            echo "START_OUT=\$(adb -s \"\$DEV\" shell am start -W -n com.appletv.launcher/.MainActivity 2>&1)"
-            echo "printf '%s' \"\$START_OUT\" | grep -qF 'Status: ok' || { echo 'ERROR: launcher did not start; stock left untouched'; exit 1; }"
-            echo "[ -n \"\$STOCK\" ] && [ \"\$STOCK\" != 'com.appletv.launcher' ] && adb -s \"\$DEV\" shell pm disable-user --user 0 \"\$STOCK\" >/dev/null 2>&1 || true"
-            echo "adb -s \"\$DEV\" shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity >/dev/null 2>&1 || true"
-            echo "HOME_NOW=\$(adb -s \"\$DEV\" shell \$HOME_QUERY 2>/dev/null | tail -n 1 | tr -d '\r' | cut -d/ -f1 || true)"
-            echo "case \"\$HOME_NOW\" in com.appletv.launcher) echo '✅ Home verified: Apple TV Launcher' ;; *) echo 'ERROR: Home is '\"\$HOME_NOW\"'; rolling back...'; [ -n \"\$STOCK\" ] && adb -s \"\$DEV\" shell pm enable --user 0 \"\$STOCK\" >/dev/null 2>&1 || true; exit 1 ;; esac"
-            ;;
-        \[x\]\ SPEED_ANIMATIONS)
-            echo "echo '==> Setting 0.5x animation scales...'"
-            echo "adb -s \"\$DEV\" shell settings put global window_animation_scale 0.5"
-            echo "adb -s \"\$DEV\" shell settings put global transition_animation_scale 0.5"
-            echo "adb -s \"\$DEV\" shell settings put global animator_duration_scale 0.5"
-            ;;
-    esac
-done < "$PLAN_FILE"
-
-echo ""
-echo "echo ''"
-echo "echo '========================================================'"
-echo "echo '  ✅ All approved steps completed.'"
-echo "echo \"  Restore anytime: ./tools/restore.sh \$BACKUP_FILE \$DEV\""
-echo "echo '========================================================'"
-} > "$APPLY_FILE"
-chmod +x "$APPLY_FILE"
+    chmod +x "$APPLY_FILE"
 }
 
 generate_apply "$PLAN" "$APPLY" "$DEV"
