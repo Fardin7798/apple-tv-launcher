@@ -21,13 +21,17 @@ if ! command -v adb >/dev/null 2>&1; then
 fi
 
 # 2. Target Device Discovery & Connection
-TARGET_HOST="${1:-}"
+TARGET_HOST="${1:-${TV_HOST:-${TV_IP:-}}}"
 if [ -z "$TARGET_HOST" ]; then
     DEVICES=$(adb devices | grep -E '\b(device)\b' | awk '{print $1}' || true)
     if [ -n "$DEVICES" ]; then
         TARGET_DEV=$(echo "$DEVICES" | head -n 1)
         echo "==> Detected currently connected ADB device: $TARGET_DEV"
-    else
+        if [ ! -t 0 ]; then
+            echo "Error: Non-interactive mode detected. Please specify TV IP as an argument (e.g. ./tools/setup.sh 192.168.1.50) or set TV_HOST=<ip>." >&2
+            exit 1
+        fi
+        read -r -p "Enter your Android TV IP address (e.g. 192.168.1.50): " TARGET_HOST
         read -r -p "Enter your Android TV IP address (e.g. 192.168.1.50): " TARGET_HOST
         if [ -z "$TARGET_HOST" ]; then
             echo "Error: TV IP address is required." >&2

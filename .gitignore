@@ -8,4 +8,3 @@ local.properties
 *.apk
 app/debug.keystore
 CONTEXT.md
-AGENTS.md
