@@ -226,12 +226,89 @@ if [ ! -f "$APK_PATH" ]; then
     fi
 fi
 
+# Phase 1: Install APK — stock launcher is still ENABLED & running at this point
 echo "==> Installing Apple TV Launcher (218 KB release)..."
-adb -s "$TARGET_DEV" install -r "$APK_PATH"
+INSTALL_OUT=$(adb -s "$TARGET_DEV" install -r "$APK_PATH" 2>&1)
+echo "$INSTALL_OUT"
+case "$INSTALL_OUT" in
+    *Success*) ;;
+    *INSTALL_FAILED_OLDER_SDK*)
+        echo "Error: APK requires a newer Android SDK than your TV supports." >&2
+        echo "  The stock launcher was left untouched. No changes were made." >&2
+        exit 1 ;;
+    *)
+        echo "Error: APK install failed — stock launcher left untouched." >&2
+        exit 1 ;;
+esac
 
-# 9. Set Default Home Launcher
-echo "==> Setting Apple TV Launcher as default home activity..."
+# Phase 2: Detect which stock launcher currently owns Home (needed for rollback)
+HOME_QUERY="cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.HOME"
+KNOWN_STOCK="com.google.android.tvlauncher com.google.android.apps.tv.launcherx com.google.android.leanbacklauncher com.mitv.tvhome"
+HOME_PKG=$(adb -s "$TARGET_DEV" shell $HOME_QUERY 2>/dev/null | tail -n 1 | tr -d '\r' | cut -d/ -f1 || true)
+STOCK_LAUNCHER=""
+case " $KNOWN_STOCK " in
+    *" $HOME_PKG "*) STOCK_LAUNCHER="$HOME_PKG" ;;
+    *com.appletv.launcher*) STOCK_LAUNCHER="none"
+        echo "==> Apple TV Launcher already owns Home — nothing will be disabled." ;;
+    *) STOCK_LAUNCHER="${HOME_PKG:-none}" ;;
+esac
+echo "==> Detected current Home launcher: ${STOCK_LAUNCHER}"
+
+# Phase 3: TEST the new launcher actually starts before touching stock launcher
+echo "==> Launch test: verifying Apple TV Launcher starts (pre-disable safety check)..."
+START_OUT=$(adb -s "$TARGET_DEV" shell am start -W -n com.appletv.launcher/.MainActivity 2>&1)
+echo "$START_OUT"
+if ! printf '%s' "$START_OUT" | grep -qF 'Status: ok' || printf '%s' "$START_OUT" | grep -qi '^Error'; then
+    echo "Error: Apple TV Launcher did not start — stock launcher left untouched." >&2
+    exit 1
+fi
+echo "==> Launch test PASSED — safe to proceed with Home handover."
+
+# Helper functions for Home query and rollback
+query_home() {
+    adb -s "$TARGET_DEV" shell $HOME_QUERY 2>/dev/null | tail -n 1 | tr -d '\r' | cut -d/ -f1 || true
+}
+
+rollback_home() {
+    echo "  Rolling back: re-enabling stock launcher '${STOCK_LAUNCHER}'..." >&2
+    [ "$STOCK_LAUNCHER" = "none" ] || [ -z "$STOCK_LAUNCHER" ] && { echo "  Nothing to roll back." >&2; return 1; }
+    adb -s "$TARGET_DEV" shell pm enable --user 0 "$STOCK_LAUNCHER" >/dev/null 2>&1 || true
+    adb -s "$TARGET_DEV" shell "cmd package set-home-activity --user 0 \$(cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.HOME $STOCK_LAUNCHER | tail -n 1)" >/dev/null 2>&1 || true
+    BACK=$(query_home)
+    case "$BACK" in
+        "$STOCK_LAUNCHER") echo "  TV is back to normal." >&2; return 0 ;;
+    esac
+    REC_FILE="$ROOT_DIR/backups/emergency-restore-$(printf '%s' "$TARGET_DEV" | tr -c 'A-Za-z0-9._-' '_').sh"
+    { echo "#!/usr/bin/env bash"
+      echo "# Run this if your TV Home is blank after a failed setup"
+      echo "adb -s \"$TARGET_DEV\" shell pm enable --user 0 $STOCK_LAUNCHER"
+      echo "adb -s \"$TARGET_DEV\" shell cmd package set-home-activity --user 0 \$(adb -s \"$TARGET_DEV\" shell $HOME_QUERY $STOCK_LAUNCHER | tail -n 1)"
+    } > "$REC_FILE" 2>/dev/null && chmod +x "$REC_FILE" || REC_FILE=""
+    echo "  ⚠️  Rollback incomplete — Home still shows '${BACK:-nothing}'." >&2
+    [ -n "$REC_FILE" ] && echo "  Emergency restore script: $REC_FILE" >&2
+    return 1
+}
+
+# Phase 4: Atomic handover — disable stock, set home (only NOW, after launch test passed)
+echo "==> Handing over Home to Apple TV Launcher..."
+[ "$STOCK_LAUNCHER" != "none" ] && [ -n "$STOCK_LAUNCHER" ] &&     adb -s "$TARGET_DEV" shell pm disable-user --user 0 "$STOCK_LAUNCHER" >/dev/null 2>&1 || true
 adb -s "$TARGET_DEV" shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity >/dev/null 2>&1 || true
+
+# 9. Verify Home resolved to our launcher — rollback automatically if not
+echo "==> Verifying Home ownership..."
+HOME_NOW=$(query_home)
+case "$HOME_NOW" in
+    com.appletv.launcher)
+        echo "==> Home verified: Apple TV Launcher is now the default." ;;
+    "")
+        echo "Error: TV stopped responding during handover. Attempting rollback..." >&2
+        rollback_home || true; exit 1 ;;
+    *)
+        echo "Error: Home resolved to '${HOME_NOW}', not Apple TV Launcher. Attempting rollback..." >&2
+        rollback_home || true
+        echo "  Tip: If on Google TV, add com.google.android.tungsten.setupwraith to your debloat profile and retry." >&2
+        exit 1 ;;
+esac
 
 echo ""
 echo "=========================================================="
