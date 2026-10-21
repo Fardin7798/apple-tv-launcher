@@ -106,8 +106,8 @@ if [ -d "$TARGET_PATH" ] && [ -f "$TARGET_PATH/metadata.env" ]; then
         read -r -p "Do you want to uninstall SmartTube from TV? [y/N]: " REMOVE_SMARTTUBE
         case "$REMOVE_SMARTTUBE" in
             [yY][eE][sS]|[yY])
+                adb -s "$DEV" shell pm uninstall com.liskovsoft.videomanager >/dev/null 2>&1 || true
                 echo "    Uninstalling com.teamsmart.videomanager.tv..."
-                adb -s "$DEV" shell pm uninstall com.teamsmart.videomanager.tv >/dev/null 2>&1 || true
                 ;;
         esac
     fi

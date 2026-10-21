@@ -26,8 +26,9 @@ echo "  🚀 Applying Approved Plan on: $TARGET_DEV"
 echo "  📄 Plan File: $PLAN_FILE"
 echo "=========================================================="
 
-# ── Protected and Core System Services (NEVER DISABLED) ─────────
-PROTECTED_LIST="com.google.android.apps.mediashell com.google.android.katniss com.google.android.inputmethod.latin com.android.bluetooth com.android.wifi com.android.settings com.android.systemui com.google.android.gms com.google.android.gsf android com.google.android.tv.frameworkpackagestubs com.google.android.tungsten.setupwraith com.google.android.setupwizard com.appletv.launcher com.google.android.tvlauncher com.google.android.apps.tv.launcherx com.google.android.leanbacklauncher com.mitv.tvhome"
+# ── Protected and Core System Services (Loaded from protected.txt) ──
+PROTECTED_FILE="$ROOT_DIR/tools/protected.txt"
+PROTECTED_LIST=$(grep -v '^\s*#' "$PROTECTED_FILE" 2>/dev/null | grep -v '^\s*$' | tr '\n' ' ' || true)
 
 is_protected() {
     local p="$1"
@@ -153,7 +154,10 @@ while IFS= read -r line || [ -n "$line" ]; do
                 continue
             fi
             adb -s "$TARGET_DEV" shell pm disable-user --user 0 "$PKG" >/dev/null 2>&1 || true
-            DISABLED_COUNT=$((DISABLED_COUNT + 1))
+            if adb -s "$TARGET_DEV" shell pm list packages -d 2>/dev/null | grep -qx "package:$PKG"; then
+                echo "DISABLED: $PKG" >> "$SNAPSHOT_DIR/changelog.txt"
+                DISABLED_COUNT=$((DISABLED_COUNT + 1))
+            fi
             ;;
     esac
 done < "$PLAN_FILE"

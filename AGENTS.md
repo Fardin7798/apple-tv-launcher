@@ -29,92 +29,41 @@ bash reports/apply_<ts>.sh
 ```
 
 *(Optional 1-Click Interactive Mode: `./tools/setup.sh <TV_IP>`)*
----
+## 🛠️ Tool Suite Reference
 
-## 🛠️ Individual Autonomous Workflows
+The repository provides a single, unified tool suite. Always use these tools rather than manual raw ADB commands:
 
-If you need to execute or debug individual phases independently:
+1. **`./tools/audit.sh [TV_IP]`**:
+   - 100% Read-Only inspection of TV specs, running packages, Home owner, and HDMI inputs.
+   - Saves Day-1 baseline snapshot in `backups/<device>_original/`.
+   - Generates `reports/report_<ts>.md` and editable `reports/plan_<ts>.txt`.
 
-### 1. Build the Ultra-Lightweight Launcher APK (218 KB)
-```bash
-./gradlew assembleRelease
-# Output binary: app/build/outputs/apk/release/app-release.apk
-```
-*Run unit tests to verify:*
-```bash
-./gradlew test
-```
+2. **`./tools/apply.sh <plan_file> [TV_IP]`** (or `bash reports/apply_<ts>.sh`):
+   - Executes approved plan with atomic safety:
+     - Pre-flight APK download & verification
+     - Safety state snapshot in `backups/<device>_<ts>/`
+     - Apple TV Launcher install & launch test (`am start -W`)
+     - Home handover to `com.appletv.launcher` with auto-rollback
+     - Debloat approved packages (strictly skipping `tools/protected.txt`)
+     - SmartTube installation & stock YouTube disable
 
-### 2. Connect & Probe Target Device
-```bash
-# Connect over Wi-Fi ADB
-adb connect <TV_IP>:5555
-adb -s <TV_IP>:5555 get-state
-
-# Inspect hardware specs
-MANUFACTURER=$(adb -s <TV_IP>:5555 shell getprop ro.product.manufacturer | tr -d '\r')
-MODEL=$(adb -s <TV_IP>:5555 shell getprop ro.product.model | tr -d '\r')
-ANDROID_VER=$(adb -s <TV_IP>:5555 shell getprop ro.build.version.release | tr -d '\r')
-```
-
-### 3. Apply Multi-Brand Debloat Profile
-Select matching profile from [`profiles/`](profiles/):
-- Xiaomi / Redmi: `profiles/xiaomi.txt`
-- Sony BRAVIA: `profiles/sony-bravia.txt`
-- TCL: `profiles/tcl.txt`
-- OnePlus: `profiles/oneplus.txt`
-- Hisense: `profiles/hisense.txt`
-- NVIDIA SHIELD: `profiles/nvidia-shield.txt`
-- Chromecast with Google TV: `profiles/chromecast-gtv.txt`
-- Fallback: `profiles/universal-safe.txt`
-
-Disable packages safely for user 0:
-```bash
-adb -s <TV_IP>:5555 shell pm disable-user --user 0 <package_name>
-```
-
-### 4. Replace Stock YouTube with Official SmartTube
-```bash
-# Disable stock ad-heavy YouTube
-adb -s <TV_IP>:5555 shell pm disable-user --user 0 com.google.android.youtube.tv
-adb -s <TV_IP>:5555 shell pm disable-user --user 0 com.google.android.youtube.tvmusic
-
-# Download and install latest official SmartTube
-./tools/get_smarttube.sh <TV_IP>:5555
-```
-
-### 5. Install Launcher & Set Permanent Default Home
-```bash
-# Install release APK
-adb -s <TV_IP>:5555 install -r app/build/outputs/apk/release/app-release.apk
-
-# Bind as default Home activity (survives hard reboot / wall switch cycle)
-adb -s <TV_IP>:5555 shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity
-```
-
-### 6. Verify Full Story
-- Check default home resolution:
-  ```bash
-  adb -s <TV_IP>:5555 shell cmd package resolve-activity --brief android.intent.action.MAIN -c android.intent.category.HOME
-  # Must output: com.appletv.launcher/.MainActivity
-  ```
-- Trigger Home screen:
-  ```bash
-  adb -s <TV_IP>:5555 shell input keyevent 3
-  ```
+3. **`./tools/restore.sh <snapshot_dir> [TV_IP]`**:
+   - Restores original stock launcher as default Home.
+   - Re-enables all original system packages.
+   - Resets animation scales back to original values.
+   - Re-enables stock YouTube.
+   - Offers clean uninstallation of Apple TV Launcher and SmartTube.
 
 ---
 
 ## 🛡️ Critical Guardrails for Agents
 
 1. **NEVER Disable Protected System Services:**
-   - ❌ `com.google.android.apps.mediashell` (Chromecast built-in — needed for phone casting).
-   - ❌ `com.google.android.katniss` (Google Assistant / Remote Mic Voice Search).
-   - ❌ Keyboard packages (e.g. `com.google.android.inputmethod.latin` Gboard).
-   - ❌ Wi-Fi, Bluetooth, Audio, HDMI CEC, and Display hal services.
+   - Always honor `tools/protected.txt` (Chromecast, Assistant, Gboard, Wi-Fi, System UI, GMS, setup wizards).
+   - Never disable stock launchers via generic debloat; launcher handover is exclusively handled by `apply.sh`.
 2. **NEVER Use AccessibilityService for Key Interception:**
    - Enabling an accessibility service hook intercepts Android's native Linux `InputDispatcher` repeat queue, breaking volume button hold acceleration.
    - Hotkeys must remain at the launcher activity / broadcast receiver level (Double-press Home).
 3. **Always Ensure Reversibility:**
-   - Before running debloat, save a snapshot via `adb shell pm list packages -e > backups/backup_<timestamp>.txt`.
-   - To restore: `./tools/restore.sh backups/<backup_file>.txt <TV_IP>:5555`.
+   - Always verify that a snapshot exists before touching the TV.
+   - To restore: `./tools/restore.sh backups/<device_snapshot_directory> [TV_IP]`.

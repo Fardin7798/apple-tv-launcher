@@ -1,0 +1,19 @@
+# Core Android TV Protected System Packages (NEVER TOUCHED)
+com.google.android.apps.mediashell
+com.google.android.katniss
+com.google.android.inputmethod.latin
+com.android.bluetooth
+com.android.wifi
+com.android.settings
+com.android.systemui
+com.google.android.gms
+com.google.android.gsf
+android
+com.google.android.tv.frameworkpackagestubs
+com.google.android.tungsten.setupwraith
+com.google.android.setupwizard
+com.appletv.launcher
+com.google.android.tvlauncher
+com.google.android.apps.tv.launcherx
+com.google.android.leanbacklauncher
+com.mitv.tvhome

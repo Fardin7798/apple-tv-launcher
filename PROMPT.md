@@ -38,22 +38,17 @@ Present a clean, human-readable summary in our chat:
 2. **Current Launcher:** Name of the stock launcher currently owning Home.
 3. **Bloatware to be Disabled:** Specific list of ad packages/telemetry found on my TV.
 4. **Protected Core Apps (Will NEVER be touched):** Chromecast, Google Assistant, Wi-Fi, Gboard, Netflix/Prime/Hotstar, HDMI inputs.
-5. **Ask me these 2 preference questions:**
+5. **Ask me these 2 preference questions and update `reports/plan_<timestamp>.txt` accordingly ([x] to enable, [ ] to skip):**
    - "Do you want to replace stock ad-heavy YouTube with official Ad-Free SmartTube?" (Recommended: Yes)
    - "Do you want to enable 0.5x animation scales for snappier TV response?" (Recommended: Yes)
-6. **Wait for my explicit approval:** Do NOT proceed until I say "Approved" or tell you which items to keep/remove.
+6. **Wait for my explicit approval:** Do NOT touch my TV until I say "Approved" or specify changes.
 
 ### Step 4: Apply Approved Plan with Safety Handover
 Once I approve:
-1. Create a safety snapshot backup of all enabled packages in `backups/backup_<timestamp>.txt`.
-2. Ensure the Apple TV Launcher APK is ready (use `app/build/outputs/apk/release/app-release.apk` or fetch latest release from GitHub if building locally is unavailable).
-3. Run the approved plan (`bash reports/apply_<timestamp>.sh` or execute approved plan items).
-4. Safety Handover Protocol:
-   - Install Apple TV Launcher APK while stock launcher is still alive.
-   - Run pre-disable launch test (`am start -W -n com.appletv.launcher/.MainActivity`).
-   - If test fails → abort immediately, stock launcher untouched.
-   - If test succeeds → set Home activity and disable stock launcher.
-   - Verify Home resolves to `com.appletv.launcher/.MainActivity`. If not, auto-rollback!
+1. Ensure the edited `reports/plan_<timestamp>.txt` reflects my approved choices.
+2. Run the approved plan:
+   `bash reports/apply_<timestamp>.sh`
+   *(This automatically captures a full system state snapshot before touching the TV, runs pre-launch verification, performs safe Home handover with auto-rollback, and executes approved debloat).*
 
 ### Step 5: Verify Everything & Explain Remote Shortcuts
 1. Test Home key: `adb shell input keyevent 3`.
@@ -61,5 +56,5 @@ Once I approve:
 3. Explain the remote shortcuts to me:
    - **Double-Press Home:** Brings up the native Apple TV Recent Apps Switcher.
    - **Volume Hold:** 100% hardware-speed volume acceleration (zero lag).
-   - **Restoration:** Remind me that `./tools/restore.sh` can revert all changes anytime.
+   - **Restoration:** Remind me that `./tools/restore.sh backups/<device_snapshot_directory>` can revert all changes anytime.
 ```

@@ -133,25 +133,8 @@ SYSTEM_PKGS=$(tv pm list packages -s | sed 's/package://' | sort)
 USER_PKGS=$(tv pm list packages -3 | sed 's/package://' | sort)
 TOTAL=$(printf '%s\n' "$ALL_PKGS" | grep -c . || true)
 DISABLED_COUNT=$(printf '%s\n' "$DISABLED_PKGS" | grep -c . || true)
-
-# Protected packages — NEVER touch these
-PROTECTED="com.google.android.apps.mediashell
-com.google.android.katniss
-com.google.android.inputmethod.latin
-com.android.bluetooth
-com.android.wifi
-com.android.settings
-com.android.systemui
-com.google.android.gms
-com.google.android.gsf
-android
-com.google.android.tv.frameworkpackagestubs
-com.google.android.tungsten.setupwraith
-com.google.android.setupwizard
-com.appletv.launcher
-com.google.android.tvlauncher
-com.google.android.apps.tv.launcherx
-com.google.android.leanbacklauncher"
+# Protected packages — loaded from Single Source of Truth (protected.txt)
+PROTECTED=$(grep -v '^\s*#' "$SCRIPT_DIR/protected.txt" | grep -v '^\s*$' || true)
 
 # Known safe streaming apps
 STREAMING="com.netflix.ninja
@@ -282,11 +265,8 @@ ${TOP5_RAM}
 ${HDMI_PKGS}
 \`\`\`
 
-> [!IMPORTANT]
-> The setup wizard \`com.google.android.tungsten.setupwraith
-com.google.android.setupwizard
-com.appletv.launcher\` can claim Home after a launcher
-> switch on Google TV 14. If present, add it to your debloat profile first and run audit again.
+> [!NOTE]
+> System setup wizards and HDMI input handlers are in the protected list and will never be touched by the debloat engine.
 
 ---
 
@@ -339,7 +319,7 @@ cat << SECTION6
 
 ---
 
-## 6. Apps Not Opened in 6+ Months (Strong Remove Candidates)
+## 6. Unused / Low Usage Packages (Review Candidates)
 
 _These are enabled system/pre-installed apps with no recorded usage. Review before disabling._
 
@@ -353,7 +333,7 @@ else
         # Skip if already in bloat list, protected, or streaming
         echo "$PROTECTED" | grep -qx "$pkg" && continue
         echo "$STREAMING" | grep -qx "$pkg" && continue
-        echo "- \`$pkg\` — 6+ months no usage"
+        echo "- \`$pkg\` — Unused / No foreground time"
         SHOWN=$((SHOWN+1))
         [ $SHOWN -ge 30 ] && echo "_...and more (see full usage dump)_" && break
     done
