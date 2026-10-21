@@ -1,0 +1,19 @@
+# TCL Android TV & Google TV Profile (C-Series, Q-Series, BeyondTV)
+# Tested on Android TV 9 through Android 14.
+
+# TCL Tracking, Analytics & Samba ACR Fingerprinting
+com.tcl.ttvs
+com.tcl.logkit
+com.tcl.usercenter
+
+# TCL Channel, Recommendations & Partner Promos
+com.tcl.partnercustomizer
+com.tcl.channel
+com.google.android.tvrecommendations
+
+# Diagnostic Feedback
+com.google.android.feedback
+
+# Stock Google TV Launcher (Replaced by Apple TV Launcher)
+com.google.android.apps.tv.launcherx
+com.google.android.tvlauncher

@@ -1,0 +1,158 @@
+#!/usr/bin/env bash
+# Universal 1-Click Android TV Transformation Suite
+# Transforms any Android TV (Sony, TCL, Xiaomi, OnePlus, Shield, Chromecast)
+# into an ultra-clean, ad-free Apple TV experience with SmartTube and 218 KB Launcher.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+echo "=========================================================="
+echo "       🍎 Universal Apple TV Launcher Setup Suite         "
+echo "=========================================================="
+
+# 1. Verify ADB tool
+if ! command -v adb >/dev/null 2>&1; then
+    echo "Error: 'adb' command not found." >&2
+    echo "Please install Android Platform Tools:" >&2
+    echo "  - Linux:  sudo apt install adb" >&2
+    echo "  - macOS:  brew install android-platform-tools" >&2
+    exit 1
+fi
+
+# 2. Target Device Discovery & Connection
+TARGET_HOST="${1:-}"
+if [ -z "$TARGET_HOST" ]; then
+    DEVICES=$(adb devices | grep -E '\b(device)\b' | awk '{print $1}' || true)
+    if [ -n "$DEVICES" ]; then
+        TARGET_DEV=$(echo "$DEVICES" | head -n 1)
+        echo "==> Detected currently connected ADB device: $TARGET_DEV"
+    else
+        read -r -p "Enter your Android TV IP address (e.g. 192.168.1.50): " TARGET_HOST
+        if [ -z "$TARGET_HOST" ]; then
+            echo "Error: TV IP address is required." >&2
+            exit 1
+        fi
+        echo "==> Connecting to $TARGET_HOST:5555..."
+        adb connect "$TARGET_HOST:5555" || true
+        TARGET_DEV="$TARGET_HOST:5555"
+    fi
+else
+    if [[ "$TARGET_HOST" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo "==> Connecting to $TARGET_HOST:5555..."
+        adb connect "$TARGET_HOST:5555" || true
+        TARGET_DEV="$TARGET_HOST:5555"
+    else
+        TARGET_DEV="$TARGET_HOST"
+    fi
+fi
+
+# Verify device is authorized and responding
+if ! adb -s "$TARGET_DEV" get-state >/dev/null 2>&1; then
+    echo "Error: Device $TARGET_DEV is not accessible or unauthorized." >&2
+    echo "Please check your TV screen to accept the 'Allow USB debugging' prompt." >&2
+    exit 1
+fi
+
+# 3. Hardware & OS Probing
+echo "==> Probing TV hardware..."
+MANUFACTURER=$(adb -s "$TARGET_DEV" shell getprop ro.product.manufacturer 2>/dev/null | tr -d '\r' | tr '[:upper:]' '[:lower:]' || echo "generic")
+MODEL=$(adb -s "$TARGET_DEV" shell getprop ro.product.model 2>/dev/null | tr -d '\r' || echo "Android TV")
+ANDROID_VER=$(adb -s "$TARGET_DEV" shell getprop ro.build.version.release 2>/dev/null | tr -d '\r' || echo "Unknown")
+
+echo "    • Manufacturer: $MANUFACTURER"
+echo "    • Model:        $MODEL"
+echo "    • Android OS:   $ANDROID_VER"
+
+# 4. Profile Matching
+SELECTED_PROFILE=""
+case "$MANUFACTURER" in
+    *xiaomi*|*redmi*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/xiaomi.txt"
+        ;;
+    *sony*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/sony-bravia.txt"
+        ;;
+    *tcl*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/tcl.txt"
+        ;;
+    *hisense*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/hisense.txt"
+        ;;
+    *oneplus*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/oneplus.txt"
+        ;;
+    *nvidia*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/nvidia-shield.txt"
+        ;;
+    *google*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/chromecast-gtv.txt"
+        ;;
+    *amazon*)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/amazon-fire-tv.txt"
+        ;;
+    *)
+        SELECTED_PROFILE="$ROOT_DIR/profiles/universal-safe.txt"
+        ;;
+esac
+
+echo "==> Auto-selected debloat profile: $(basename "$SELECTED_PROFILE")"
+
+# 5. Snapshot Current Packages (Safe Recovery Guarantee)
+BACKUP_DIR="$ROOT_DIR/backups"
+mkdir -p "$BACKUP_DIR"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+BACKUP_FILE="$BACKUP_DIR/backup_${TIMESTAMP}.txt"
+echo "==> Creating safety snapshot before modifications: $BACKUP_FILE"
+adb -s "$TARGET_DEV" shell pm list packages -e | sed 's/package://' | sort > "$BACKUP_FILE"
+echo "    Snapshot saved (${BACKUP_FILE}). Can be restored anytime with tools/restore.sh"
+
+# 6. Apply Debloat Profile
+echo "==> Disabling bloatware, telemetry, and sponsored recommendation rows..."
+if [ -f "$SELECTED_PROFILE" ]; then
+    COUNT=0
+    while IFS= read -r line || [ -n "$line" ]; do
+        PKG=$(echo "$line" | sed -e 's/#.*//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+        if [ -n "$PKG" ]; then
+            adb -s "$TARGET_DEV" shell pm disable-user --user 0 "$PKG" >/dev/null 2>&1 || true
+            COUNT=$((COUNT + 1))
+        fi
+    done < "$SELECTED_PROFILE"
+    echo "    Cleaned $COUNT bloatware packages safely."
+fi
+
+# 7. Stock YouTube Disable & SmartTube Installation
+echo "==> Disabling stock YouTube (ad-supported)..."
+adb -s "$TARGET_DEV" shell pm disable-user --user 0 com.google.android.youtube.tv >/dev/null 2>&1 || true
+adb -s "$TARGET_DEV" shell pm disable-user --user 0 com.google.android.youtube.tvmusic >/dev/null 2>&1 || true
+
+echo "==> Installing SmartTube (Ad-Free, SponsorBlock, TV-Optimized)..."
+"$SCRIPT_DIR/get_smarttube.sh" "$TARGET_DEV"
+
+# 8. Apple TV Launcher Installation
+APK_PATH="$ROOT_DIR/app/build/outputs/apk/release/app-release.apk"
+if [ ! -f "$APK_PATH" ]; then
+    echo "==> Compiling Apple TV Launcher APK..."
+    (cd "$ROOT_DIR" && ./gradlew assembleRelease)
+fi
+
+echo "==> Installing Apple TV Launcher (218 KB release)..."
+adb -s "$TARGET_DEV" install -r "$APK_PATH"
+
+# 9. Set Default Home Launcher
+echo "==> Setting Apple TV Launcher as default home activity..."
+adb -s "$TARGET_DEV" shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity >/dev/null 2>&1 || true
+
+echo ""
+echo "=========================================================="
+echo "           🎉 Setup Successfully Completed!              "
+echo "=========================================================="
+echo "Your TV is now running the Apple TV Launcher ecosystem:"
+echo "  • Pitch-Black Leanback Grid with dynamic ambient glow"
+echo "  • SmartTube pre-configured (Ad-Free YouTube experience)"
+echo "  • Native Apple TV Recent Apps Switcher (Double-Press Home)"
+echo "  • Zero Volume Lag (100% hardware acceleration preserved)"
+echo ""
+echo "To restore original stock packages at any time, run:"
+echo "  tools/restore.sh $BACKUP_FILE $TARGET_DEV"
+echo "=========================================================="

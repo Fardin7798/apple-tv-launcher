@@ -37,29 +37,80 @@ An ultra-lightweight, bloat-free Android TV launcher featuring a native **Apple 
 | *Native Apple TV App Switcher (Double-Press Home)* | *Quick Settings & Control Center Platter* | *tvOS 18 Split-Pane Launcher Settings* |
 ---
 
-## 🚀 Quick Start
+## 🚀 1-Click Universal TV Setup
 
-### 1. Build the APK
+Transform any Android TV or Google TV into an ultra-clean, ad-free Apple TV experience with automated debloating, SmartTube installation, and the 218 KB Apple TV launcher.
+
+### Option 1: Automated 1-Click Setup (Recommended)
+
+1. Enable **Developer Options** and **Network / USB Debugging** on your Android TV.
+2. Connect to your TV and run the setup wizard:
+
+**Linux / macOS:**
 ```bash
-./gradlew assembleRelease
+./tools/setup.sh <TV_IP>
 ```
-The optimized APK will be generated at:
-`app/build/outputs/apk/release/app-release.apk`
 
-### 2. Install to your TV over Wi-Fi
-Enable **Developer Options** and **Network / USB Debugging** on your Android TV:
-```bash
-# Connect to your TV's IP
-adb connect <TV_IP>:5555
-
-# Install the launcher
-adb install -r app/build/outputs/apk/release/app-release.apk
-
-# Set as default Home launcher
-adb shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity
+**Windows (PowerShell):**
+```powershell
+.\tools\setup.ps1 -TargetHost <TV_IP>
 ```
+
+**What the automated setup does:**
+- 🔍 **Auto-detects TV hardware & manufacturer** (Sony, TCL, Xiaomi, OnePlus, Hisense, Shield, Chromecast).
+- 💾 **Creates an instant safety backup** of all currently enabled packages.
+- 🧹 **Safely disables manufacturer bloatware, sponsored recommendation rows, and telemetry** via `pm disable-user`.
+- 📺 **Replaces stock ad-heavy YouTube with official SmartTube** (Ad-free, SponsorBlock, TV-optimized).
+- 🍎 **Installs and sets Apple TV Launcher** as the permanent default home activity.
+
 ---
 
+### Option 2: Standalone Launcher Installation
+
+If you only want the ultra-lightweight launcher without debloating:
+```bash
+# 1. Build release APK (or use pre-built binary in app/build/outputs/apk/release/)
+./gradlew assembleRelease
+
+# 2. Connect to your TV over Wi-Fi
+adb connect <TV_IP>:5555
+
+# 3. Install the launcher
+adb install -r app/build/outputs/apk/release/app-release.apk
+
+# 4. Set as permanent default Home launcher
+adb shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity
+```
+
+---
+
+## 🛡️ Multi-Brand Debloat Profiles
+
+Pre-configured, verified debloat profiles are organized in [`profiles/`](profiles/):
+
+| Brand / Platform | Profile File | Target Capabilities Cleaned |
+|---|---|---|
+| **Xiaomi / Redmi** | [`profiles/xiaomi.txt`](profiles/xiaomi.txt) | PatchWall, Glance lockscreen ads, Mi Video, Mi Music, Mi Analytics |
+| **Sony BRAVIA** | [`profiles/sony-bravia.txt`](profiles/sony-bravia.txt) | Samba TV ACR tracking, Sony Select promos, Sony Discover, Demo mode |
+| **TCL** | [`profiles/tcl.txt`](profiles/tcl.txt) | TCL Channel, TCL TTVS tracker, TCL Assistant, recommendation feeds |
+| **OnePlus TV** | [`profiles/oneplus.txt`](profiles/oneplus.txt) | OxygenPlay, OnePlus Store, HeyTap telemetry, preloaded browser |
+| **Hisense** | [`profiles/hisense.txt`](profiles/hisense.txt) | Hisense telemetry, partner ad services, sponsored home rows |
+| **NVIDIA SHIELD** | [`profiles/nvidia-shield.txt`](profiles/nvidia-shield.txt) | Shield recommendation rows, telemetry, partner promotions |
+| **Chromecast with Google TV** | [`profiles/chromecast-gtv.txt`](profiles/chromecast-gtv.txt) | Google TV sponsored rows, partner auto-installs, feedback sender |
+| **Amazon Fire TV** | [`profiles/amazon-fire-tv.txt`](profiles/amazon-fire-tv.txt) | Fire TV sponsored banners, forced promotions, metrics |
+| **Universal Fallback** | [`profiles/universal-safe.txt`](profiles/universal-safe.txt) | Safe for any Android TV 9.0+ device |
+
+> [!NOTE]
+> **Safety Whitelist:** None of our profiles ever disable Chromecast built-in (`com.google.android.apps.mediashell`), Google Assistant voice search (`com.google.android.katniss`), Wi-Fi/Bluetooth stacks, or Gboard.
+
+---
+
+## ⏪ Instant Rollback & Restore
+
+Every modification is 100% reversible. To restore all original system packages on your TV:
+```bash
+./tools/restore.sh backups/<backup_file>.txt <TV_IP>:5555
+```
 
 ---
 
