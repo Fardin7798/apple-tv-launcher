@@ -12,9 +12,9 @@ An ultra-lightweight, bloat-free Android TV launcher featuring a native **Apple 
 ---
 
 <p align="center">
-  <img src="docs/RecentTab.png" alt="Apple TV Recent Apps Switcher" width="850">
+  <img src="docs/Homescreen.png" alt="Apple TV Home Screen" width="850">
 </p>
-<p align="center"><em>Native Apple TV Style Recent Apps Switcher — Double-Press Home button to toggle</em></p>
+<p align="center"><em>Minimalist Pitch-Black Leanback Grid</em></p>
 
 ---
 
