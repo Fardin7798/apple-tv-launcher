@@ -43,6 +43,19 @@ An ultra-lightweight, bloat-free Android TV launcher featuring a native **Apple 
 
 Transform any Android TV or Google TV into an ultra-clean, ad-free Apple TV experience with automated debloating, SmartTube installation, and the 218 KB Apple TV launcher.
 
+### 📋 Prerequisites & Requirements
+
+Before running the setup, ensure:
+1. 📶 **Same Wi-Fi Network:** Your computer (laptop/PC) and Android TV must be connected to the exact same Wi-Fi router / network.
+2. 📺 **Android TV 9.0+:** Compatible with any TV, box, or stick running Android TV 9, 10, 11, 12, or 14 (Google TV).
+3. ⚙️ **Enable USB Debugging on TV:**
+   - Go to **Settings ➔ Device Preferences ➔ About**.
+   - Scroll down to **Build** and click OK on your remote **7 times** (until you see *"You are now a developer"*).
+   - Go back, open **Developer options**, and turn **USB debugging** ON (also turn **Network debugging** ON if present).
+4. 💻 **ADB Tool:** Standard Android Platform Tools (`sudo apt install adb` on Linux, `brew install android-platform-tools` on macOS, or pre-bundled in PowerShell for Windows).
+
+---
+
 ### 🤖 Option 1: Easiest Setup with Any AI Agent (Recommended for Beginners)
 
 Don't want to deal with terminal commands? You can give this repository to any AI coding assistant (**Claude Code, Cursor, Devin, Antigravity, Roo Code, Windsurf, ChatGPT**):

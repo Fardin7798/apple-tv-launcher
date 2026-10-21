@@ -11,6 +11,8 @@ I want to transform my Android TV / Google TV into an ultra-clean, ad-free Apple
 
 Please act as an autonomous Android TV deployment engineer and guide me through the setup step-by-step.
 
+> **Prerequisite:** Confirm that my computer and TV are connected to the same Wi-Fi network.
+
 ### Step 1: Connect to My TV
 1. If you don't know my TV's IP address:
    - Check if an ADB device is already connected (`adb devices`).
