@@ -35,5 +35,4 @@ com.ddnational.prasarbharati
 net.aljazeera.english
 
 # Stock Ads-Heavy Launcher
-com.google.android.tvlauncher
 com.google.android.tvrecommendations

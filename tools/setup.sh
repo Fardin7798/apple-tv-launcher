@@ -108,22 +108,26 @@ if [ -z "$LATEST_PLAN" ] || [ ! -f "$LATEST_PLAN" ]; then
 fi
 
 # 5. Step 2: Approval
-echo ""
-echo "=========================================================="
-echo "  📝 Plan Ready: $LATEST_PLAN"
-echo "=========================================================="
-if [ "$AUTO_CONFIRM" = false ] && [ -t 0 ]; then
-    echo "You can review or edit $LATEST_PLAN before proceeding."
-    read -r -p "Do you approve and want to apply this transformation plan now? [Y/n]: " PROCEED_REPLY
-    case "$PROCEED_REPLY" in
-        [nN][oO]|[nN])
-            echo "Operation cancelled. No changes were made to your TV."
-            echo "You can manually apply later by running: ./tools/apply.sh $LATEST_PLAN $TARGET_DEV"
-            exit 0
-            ;;
-    esac
+if [ "$AUTO_CONFIRM" = false ]; then
+    if [ -t 0 ]; then
+        echo "You can review or edit $LATEST_PLAN before proceeding."
+        read -r -p "Do you approve and want to apply this transformation plan now? [Y/n]: " PROCEED_REPLY
+        case "$PROCEED_REPLY" in
+            [nN][oO]|[nN])
+                echo "Operation cancelled. No changes were made to your TV."
+                echo "You can manually apply later by running: ./tools/apply.sh $LATEST_PLAN $TARGET_DEV"
+                exit 0
+                ;;
+        esac
+    else
+        echo "⚠️  Non-interactive mode detected and '-y' flag was not passed."
+        echo "   Read-only audit completed. Transformation plan saved to: $LATEST_PLAN"
+        echo "   To apply automatically, re-run with -y: ./tools/setup.sh $TARGET_DEV -y"
+        echo "   Or review the plan and run: ./tools/apply.sh $LATEST_PLAN $TARGET_DEV"
+        echo "   (No changes were made to your TV)"
+        exit 0
+    fi
 fi
-
 # 6. Step 3: Run Apply Pipeline
 echo ""
 echo "==> Step 3: Applying Transformation with Pre-Launch Safety..."

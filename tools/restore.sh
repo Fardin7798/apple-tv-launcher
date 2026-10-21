@@ -5,7 +5,7 @@
 set -euo pipefail
 
 TARGET_PATH="${1:-}"
-TARGET_DEV="${2:-}"
+CLI_DEV="${2:-}"
 
 if [ -z "$TARGET_PATH" ]; then
     echo "Usage: $0 <backup_directory_or_txt_file> [target_device_ip]"
@@ -33,7 +33,7 @@ if [ -d "$TARGET_PATH" ] && [ -f "$TARGET_PATH/metadata.env" ]; then
     # shellcheck source=/dev/null
     source "$TARGET_PATH/metadata.env"
 
-    DEV="${TARGET_DEV:-${TARGET_DEV_ENV:-${TARGET_DEV}}}"
+    DEV="${CLI_DEV:-${TARGET_DEV:-}}"
     if [ -z "$DEV" ]; then
         DEV=$(adb devices | grep -E '\b(device)\b' | awk '{print $1}' | head -n 1 || true)
     fi
@@ -124,7 +124,7 @@ fi
 
 # ── Fallback: Legacy Text File Package Restore ───────────────────
 echo "==> Restoring from package list file: $TARGET_PATH"
-DEV="${TARGET_DEV:-}"
+DEV="${CLI_DEV:-}"
 if [ -z "$DEV" ]; then
     DEV=$(adb devices | grep -E '\b(device)\b' | awk '{print $1}' | head -n 1 || true)
 fi

@@ -27,7 +27,7 @@ echo "  📄 Plan File: $PLAN_FILE"
 echo "=========================================================="
 
 # ── Protected and Core System Services (NEVER DISABLED) ─────────
-PROTECTED_LIST="com.google.android.apps.mediashell com.google.android.katniss com.google.android.inputmethod.latin com.android.bluetooth com.android.wifi com.android.settings com.android.systemui com.google.android.gms com.google.android.gsf android com.google.android.tv.frameworkpackagestubs com.google.android.tungsten.setupwraith com.google.android.setupwizard com.appletv.launcher"
+PROTECTED_LIST="com.google.android.apps.mediashell com.google.android.katniss com.google.android.inputmethod.latin com.android.bluetooth com.android.wifi com.android.settings com.android.systemui com.google.android.gms com.google.android.gsf android com.google.android.tv.frameworkpackagestubs com.google.android.tungsten.setupwraith com.google.android.setupwizard com.appletv.launcher com.google.android.tvlauncher com.google.android.apps.tv.launcherx com.google.android.leanbacklauncher com.mitv.tvhome"
 
 is_protected() {
     local p="$1"
@@ -133,8 +133,9 @@ if [ "$WANTS_LAUNCHER" = true ]; then
             fi
         fi
     else
-        echo "⚠️ Warning: Home did not switch to com.appletv.launcher immediately (currently $HOME_NOW)."
-        echo "    Stock launcher left untouched to prevent blank screen."
+        echo "Error: Home failed to switch to com.appletv.launcher (currently '$HOME_NOW')." >&2
+        echo "Stock launcher left untouched. Aborting before debloat to protect TV." >&2
+        exit 1
     fi
 fi
 
@@ -194,6 +195,6 @@ echo "=========================================================="
 FINAL_HOME=$(adb -s "$TARGET_DEV" shell $HOME_QUERY 2>/dev/null | tail -n 1 | tr -d '\r' | cut -d/ -f1 || true)
 echo "  ✅ Plan execution complete!"
 echo "  📺 Current Home: $FINAL_HOME"
-echo "  💾 Backup Saved: $BACKUP_FILE"
-echo "  🔄 To restore anytime: ./tools/restore.sh $BACKUP_FILE $TARGET_DEV"
+echo "  💾 Backup Saved: $SNAPSHOT_DIR"
+echo "  🔄 To restore anytime: ./tools/restore.sh $SNAPSHOT_DIR $TARGET_DEV"
 echo "=========================================================="
