@@ -84,7 +84,7 @@ bash reports/apply_<ts>.sh
 *(Alternatively, run the interactive 1-click suite directly: `./tools/setup.sh <TV_IP>`)*
 **What the automated setup does:**
 - 🔍 **Auto-detects TV hardware & manufacturer** (Sony, TCL, Xiaomi, OnePlus, Hisense, Shield, Chromecast).
-- 💾 **Creates an instant safety backup** of all currently enabled packages.
+- 💾 **Creates an instant full-state safety snapshot** of all currently enabled packages, default Home launcher, animation scales, and system settings.
 - 🧹 **Safely disables manufacturer bloatware, sponsored recommendation rows, and telemetry** via `pm disable-user`.
 - 📺 **Replaces stock ad-heavy YouTube with official SmartTube** (Ad-free, SponsorBlock, TV-optimized).
 - 🍎 **Installs and sets Apple TV Launcher** as the permanent default home activity.
@@ -133,7 +133,10 @@ Pre-configured, verified debloat profiles are organized in [`profiles/`](profile
 
 ## ⏪ Instant Rollback & True Full-State Restore
 
-Every modification is 100% reversible. A complete snapshot of your TV's original state (enabled packages, original default Home launcher, animation scales, and system settings) is preserved.
+Every modification is 100% reversible. A complete snapshot of your TV's original state (enabled packages, original default Home launcher, animation scales, and system settings) is preserved in `backups/<device>_original/` (Day-1 baseline) and `backups/<device>_<timestamp>/` (per-run).
+
+> [!NOTE]
+> **What is restored:** System packages, stock home launcher, animation scales, and system display settings are fully restored. (Private app data directories and saved Wi-Fi credentials cannot be accessed or modified over standard ADB without root access).
 
 To restore your TV back to its exact untouched factory state:
 ```bash

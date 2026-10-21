@@ -13,7 +13,3 @@ com.google.android.tv.frameworkpackagestubs
 com.google.android.tungsten.setupwraith
 com.google.android.setupwizard
 com.appletv.launcher
-com.google.android.tvlauncher
-com.google.android.apps.tv.launcherx
-com.google.android.leanbacklauncher
-com.mitv.tvhome

@@ -200,7 +200,7 @@ if [ -n "$USAGE_RAW" ]; then
     while IFS= read -r line; do
         pkg=$(echo "$line" | sed -n 's/.*package=\([^ "]*\).*/\1/p')
         [ -n "$pkg" ] && STALE_PKGS+=("$pkg")
-    done < <(echo "$USAGE_RAW" | grep -E 'lastTime="197[0-9]|totalTime="00:00"' | head -n 10 || true)
+    done < <(echo "$USAGE_RAW" | grep -E 'lastTime="197|lastTimeUsed="197|totalTime="00:00"|totalTimeInForeground="0"|totalTimeUsed="0"' | head -n 10 || true)
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════════

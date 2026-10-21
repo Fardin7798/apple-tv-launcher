@@ -38,6 +38,10 @@ is_protected() {
     return 1
 }
 
+# Stock launchers and TV input handlers (dynamically checked, protected from debloat)
+KNOWN_LAUNCHERS="com.google.android.apps.tv.launcherx com.google.android.tvlauncher com.google.android.leanbacklauncher com.mitv.tvhome"
+HDMI_INPUTS=$(adb -s "$TARGET_DEV" shell dumpsys tv_input 2>/dev/null | grep -oE 'com\.[a-zA-Z0-9._]+' | sort -u | tr '\n' ' ' || true)
+
 # ── PHASE 0: Pre-flight Verification & APK Readiness ────────────
 echo "==> [Phase 0] Verifying prerequisites and APK files..."
 APK_PATH="$ROOT_DIR/app/build/outputs/apk/release/app-release.apk"
@@ -153,6 +157,20 @@ while IFS= read -r line || [ -n "$line" ]; do
                 echo "    🛡️  Skipping protected package: $PKG"
                 continue
             fi
+            # Stock launchers are managed only in Phase 3 after Home verification
+            for kl in $KNOWN_LAUNCHERS; do
+                if [ "$PKG" = "$kl" ]; then
+                    echo "    🛡️  Skipping stock launcher from generic debloat: $PKG"
+                    continue 2
+                fi
+            done
+            # HDMI/TV input handlers are protected
+            for hdmi in $HDMI_INPUTS; do
+                if [ "$PKG" = "$hdmi" ]; then
+                    echo "    🛡️  Skipping HDMI/TV input handler: $PKG"
+                    continue 2
+                fi
+            done
             adb -s "$TARGET_DEV" shell pm disable-user --user 0 "$PKG" >/dev/null 2>&1 || true
             if adb -s "$TARGET_DEV" shell pm list packages -d 2>/dev/null | grep -qx "package:$PKG"; then
                 echo "DISABLED: $PKG" >> "$SNAPSHOT_DIR/changelog.txt"

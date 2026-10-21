@@ -122,7 +122,8 @@ if [ "$AUTO_CONFIRM" = false ]; then
     else
         echo "⚠️  Non-interactive mode detected and '-y' flag was not passed."
         echo "   Read-only audit completed. Transformation plan saved to: $LATEST_PLAN"
-        echo "   To apply automatically, re-run with -y: ./tools/setup.sh $TARGET_DEV -y"
+        echo "   AI Agents: You MUST NOT re-run with -y autonomously. Ask the user for explicit approval in chat first."
+        echo "   To apply after user approval, run: ./tools/setup.sh $TARGET_DEV -y"
         echo "   Or review the plan and run: ./tools/apply.sh $LATEST_PLAN $TARGET_DEV"
         echo "   (No changes were made to your TV)"
         exit 0

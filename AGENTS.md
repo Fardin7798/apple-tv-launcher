@@ -61,9 +61,11 @@ The repository provides a single, unified tool suite. Always use these tools rat
 1. **NEVER Disable Protected System Services:**
    - Always honor `tools/protected.txt` (Chromecast, Assistant, Gboard, Wi-Fi, System UI, GMS, setup wizards).
    - Never disable stock launchers via generic debloat; launcher handover is exclusively handled by `apply.sh`.
-2. **NEVER Use AccessibilityService for Key Interception:**
-   - Enabling an accessibility service hook intercepts Android's native Linux `InputDispatcher` repeat queue, breaking volume button hold acceleration.
-   - Hotkeys must remain at the launcher activity / broadcast receiver level (Double-press Home).
+2. **Preserve Linux `InputDispatcher` Repeat Rate (Volume Keys):**
+   - Accessibility services (`HomeKeyService`, `InputKeyService`) exist exclusively for Home double-press and TV input switching.
+   - Volume and navigation keys must NEVER be intercepted or consumed in accessibility services to preserve Android's native repeat queue and hold acceleration.
 3. **Always Ensure Reversibility:**
    - Always verify that a snapshot exists before touching the TV.
    - To restore: `./tools/restore.sh backups/<device_snapshot_directory> [TV_IP]`.
+4. **AI Agent Autonomous Approval Ban:**
+   - AI agents must NEVER execute `./tools/setup.sh -y` or `./tools/apply.sh` autonomously without explicit user approval ("Approved" / "Proceed") in chat.
