@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Launcher settings as a tvOS Settings page: centred title, a large icon on the left half,
+     the list on the right half (scrolls on its own). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/settings_backdrop">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/launcher_settings"
+        android:textColor="@color/tvos_label_primary"
+        android:textSize="@dimen/tvos_text_title3"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="-0.01" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="230dp"
+                android:layout_height="230dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="36dp"
+                android:padding="40dp"
+                android:background="@drawable/settings_hero_bg"
+                android:src="@drawable/ic_settings"
+                android:tint="#FF55585F"
+                android:elevation="8dp"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="6dp"
+            android:paddingEnd="45dp"
+            android:clipToPadding="false"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="38dp"
+                android:clipChildren="false">
+
+                <TextView
+                    style="@style/SettingsGroupLabel"
+                    android:text="@string/columns_label" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:clipChildren="false">
+
+                    <TextView android:id="@+id/columns4" style="@style/SettingsColumnChoice" android:text="4" />
+                    <TextView android:id="@+id/columns5" style="@style/SettingsColumnChoice" android:text="5" />
+                    <TextView android:id="@+id/columns6" style="@style/SettingsColumnChoice" android:text="6" />
+                    <TextView android:id="@+id/columns7" style="@style/SettingsColumnChoice" android:text="7" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/animationsChoice"
+                    style="@style/SettingsRow"
+                    android:layout_marginTop="18dp" />
+
+                <TextView
+                    android:id="@+id/advancedChoice"
+                    style="@style/SettingsRow"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    style="@style/SettingsFootnote"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/advanced_effects_warning" />
+
+                <TextView
+                    android:id="@+id/followThemeChoice"
+                    style="@style/SettingsRow"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/follow_theme" />
+
+                <TextView
+                    style="@style/SettingsFootnote"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/follow_theme_hint" />
+
+                <TextView
+                    android:id="@+id/defaultHomeChoice"
+                    style="@style/SettingsRow"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/home_settings" />
+
+                <TextView
+                    style="@style/SettingsFootnote"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/home_settings_help" />
+
+                <TextView
+                    android:id="@+id/tvSettingsChoice"
+                    style="@style/SettingsRow"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/tv_settings" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

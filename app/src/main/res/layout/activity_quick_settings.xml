@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Quick settings opened by the remote's Settings button, as the tvOS 18 Control Center: the screen dims
+     30% and a 480px (240dp) platter sits under the menu bar, top 136px, right margin 50px, as in the kit. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrim"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tvos_overlay">
+
+    <LinearLayout
+        android:id="@+id/panel"
+        android:layout_width="@dimen/tvos_cc_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="25dp"
+        android:orientation="vertical"
+        android:background="@drawable/glass_panel"
+        android:padding="@dimen/tvos_panel_padding"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="12dp">
+
+        <LinearLayout
+            android:id="@+id/rows"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipChildren="false" />
+    </LinearLayout>
+</FrameLayout>

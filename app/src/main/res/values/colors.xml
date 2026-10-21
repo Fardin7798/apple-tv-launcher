@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS 18 dark-mode palette, measured from the Apple tvOS 18 design kit (reference only). -->
+<resources>
+    <!-- Labels (opaque label colours, dark): primary / secondary 50% / tertiary 30% / quaternary 20% -->
+    <color name="tvos_label_primary">#FFFFFFFF</color>
+    <color name="tvos_label_secondary">#80FFFFFF</color>
+    <color name="tvos_label_tertiary">#4DFFFFFF</color>
+    <color name="tvos_label_quaternary">#33FFFFFF</color>
+    <color name="tvos_label_on_focus">#FF000000</color>
+    <!-- Fills (opaque fill colours, dark): quaternary 8% / tertiary 12% / secondary 16% / primary 20% -->
+    <color name="tvos_fill_quaternary">#14FFFFFF</color>
+    <color name="tvos_fill_tertiary">#1FFFFFFF</color>
+    <color name="tvos_fill_secondary">#29FFFFFF</color>
+    <color name="tvos_fill_primary">#33FFFFFF</color>
+    <!-- Platter material: #1E1E1E @ 50% over a 50px background blur in the kit. Android has no window
+         blur before API 31 here, so the fallback is more opaque (85%) to stay legible over art. -->
+    <color name="tvos_material">#D91E1E1E</color>
+    <color name="tvos_material_light_blur">#801E1E1E</color>
+    <color name="tvos_material_stroke">#1AFFFFFF</color>
+    <!-- Dimming behind alerts and Control Center -->
+    <color name="tvos_overlay">#4D000000</color>
+    <!-- Alert buttons -->
+    <color name="tvos_button">#FF2C2C2E</color>
+    <color name="tvos_button_focused">#F2FFFFFF</color>
+    <!-- Tile placeholder / settings background -->
+    <color name="tvos_tile">#FF1C1C1E</color>
+    <color name="tvos_bg_top">#FF1C1C1E</color>
+    <color name="tvos_bg_bottom">#FF000000</color>
+    <!-- System tints (dark) -->
+    <color name="tvos_blue">#FF0A84FF</color>
+    <color name="tvos_green">#FF32D74B</color>
+    <color name="tvos_orange">#FFFF9F0A</color>
+    <color name="tvos_red">#FFFF453A</color>
+    <color name="tvos_indigo">#FF5E5CE6</color>
+</resources>

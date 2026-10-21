@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TvHome" parent="android:Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <!-- tvOS 18 menu bar control: sits inside the menu bar platter (@drawable/menu_bar_bg);
+         transparent until focused, then a white capsule with black glyph and label. -->
+    <style name="TopButtonBase">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/tvos_menubar_control</item>
+        <item name="android:layout_marginStart">2dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">11dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/pill_bg</item>
+        <item name="android:textColor">@drawable/pill_text</item>
+        <item name="android:textSize">@dimen/tvos_text_caption1</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:drawableTint">@drawable/pill_text</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:stateListAnimator">@animator/tvos_focus_control</item>
+    </style>
+    <style name="TopButton" parent="TopButtonBase" />
+
+    <!-- tvOS 18 alert button: 66px tall, r16, #2C2C2E; focused white with black label, x1.045 lift. -->
+    <style name="AlertButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tvos_button_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:background">@drawable/alert_button_bg</item>
+        <item name="android:textColor">@drawable/pill_text</item>
+        <item name="android:textSize">@dimen/tvos_text_body</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:stateListAnimator">@animator/tvos_focus_control</item>
+    </style>
+
+    <!-- tvOS Settings list row: Callout, transparent until focused (white, black text). -->
+    <style name="SettingsRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:background">@drawable/settings_choice_bg</item>
+        <item name="android:textColor">@drawable/pill_text</item>
+        <item name="android:textSize">@dimen/tvos_text_callout</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:stateListAnimator">@animator/tvos_focus_control</item>
+    </style>
+    <!-- Segmented choice (Apps per row): the selected value is filled tvOS blue. -->
+    <style name="SettingsColumnChoice" parent="SettingsRow">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Section header above a group of rows (tvOS Settings): Caption2 Emph, secondary. -->
+    <style name="SettingsGroupLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textColor">@color/tvos_label_secondary</item>
+        <item name="android:textSize">@dimen/tvos_text_caption2</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <!-- Footnote under a row: Caption2, secondary. -->
+    <style name="SettingsFootnote">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textColor">@color/tvos_label_secondary</item>
+        <item name="android:textSize">@dimen/tvos_text_caption2</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+</resources>

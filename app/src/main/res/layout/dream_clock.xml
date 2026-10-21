@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screensaver (ClockDream) as a tvOS aerial: clock and date that drift around over the aerial art. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dream_backdrop">
+
+    <View
+        android:id="@+id/dreamAmbient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/dreamContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="true">
+
+            <TextClock
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:format12Hour="h:mm"
+                android:format24Hour="HH:mm"
+                android:textColor="#F2FFFFFF"
+                android:textSize="75sp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="-0.03"
+                android:includeFontPadding="false"
+                android:shadowColor="#73000000"
+                android:shadowDy="2"
+                android:shadowRadius="10" />
+
+            <TextClock
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:format12Hour="a"
+                android:format24Hour=""
+                android:textColor="#BFFFFFFF"
+                android:textSize="@dimen/tvos_text_callout"
+                android:fontFamily="sans-serif-medium"
+                android:shadowColor="#73000000"
+                android:shadowDy="1"
+                android:shadowRadius="6" />
+        </LinearLayout>
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="4dp"
+            android:format12Hour="@string/date_format"
+            android:format24Hour="@string/date_format"
+            android:textColor="#CCFFFFFF"
+            android:textSize="@dimen/tvos_text_callout"
+            android:fontFamily="sans-serif-medium"
+            android:shadowColor="#73000000"
+            android:shadowDy="1"
+            android:shadowRadius="6" />
+    </LinearLayout>
+</FrameLayout>

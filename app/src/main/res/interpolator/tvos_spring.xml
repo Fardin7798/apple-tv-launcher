@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spring-like curve for tvOS focus: fast start, about 6% overshoot, settles. -->
+<pathInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:controlX1="0.32" android:controlY1="1.28"
+    android:controlX2="0.42" android:controlY2="1.0" />

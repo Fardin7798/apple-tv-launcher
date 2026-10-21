@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS 18 Platter material (Control Center, menus, alerts): r48px, 1px white 10% edge.
+     The kit blurs the backdrop 50px under #1E1E1E @50%; without a window blur this uses an 85% fill. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/tvos_material" />
+            <stroke android:width="0.5dp" android:color="@color/tvos_material_stroke" />
+            <corners android:radius="@dimen/tvos_panel_radius" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Apple TV Launcher</string>
+    <string name="inputs">Inputs</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="settings">Settings</string>
+    <string name="choose_input">Inputs</string>
+    <string name="connected">Connected</string>
+    <string name="standby">Standby</string>
+    <string name="not_connected">No device</string>
+    <string name="live_tv">Live TV</string>
+    <string name="no_inputs">No inputs found</string>
+    <string name="good_morning">Good morning</string>
+    <string name="good_afternoon">Good afternoon</string>
+    <string name="good_evening">Good evening</string>
+    <string name="good_night">Good night</string>
+    <string name="ethernet">Ethernet</string>
+    <string name="offline">Offline</string>
+    <string name="not_available">Not available on this TV</string>
+    <string name="cant_open">Can\'t open %1$s</string>
+    <string name="date_format">EEEE  d MMMM</string>
+    <!-- Date next to the clock on Home; a locale can split it over two lines with \n. -->
+    <string name="date_format_home" translatable="false">@string/date_format</string>
+    <string name="dream_name">Clock</string>
+    <string name="vpn">VPN</string>
+    <string name="vpn_off">VPN off</string>
+    <string name="home_settings">Choose default home</string>
+    <string name="home_settings_help">Select your original home to stop using Apple TV Launcher as Home, or Apple TV Launcher to switch back. The original launcher must be enabled and your TV must provide a home picker; use the restore script first if it was disabled.</string>
+    <string name="launcher_settings">Launcher settings</string>
+    <string name="columns_label">Apps per row</string>
+    <string name="animations_state">Animations: %1$s</string>
+    <string name="advanced_effects">Advanced effects</string>
+    <string name="advanced_effects_state">Advanced effects: %1$s</string>
+    <string name="advanced_effects_warning">Adds a lifted tile, icon zoom and smooth colour transitions. May increase memory use; the actual difference depends on your TV.</string>
+    <string name="follow_theme">Follow theme (reset on-TV choices)</string>
+    <string name="follow_theme_hint">Uses the current theme or built-in layout and motion settings. Pushing or resetting a theme also clears your on-TV choices.</string>
+    <string name="tv_settings">TV system settings</string>
+    <string name="quick_picture">Display</string>
+    <string name="quick_network">Network</string>
+    <string name="quick_apps">Apps</string>
+    <string name="quick_apps_hint">Re-enable</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="enable">Enable</string>
+    <string name="input_key_service_description">Opens the input switcher when the remote\'s Input button is pressed.</string>
+    <string name="home_key_name">Home button</string>
+    <string name="home_key_description">Makes the remote\'s Home button open this launcher.</string>
+    <string name="card_prompt_title">New card from %1$s</string>
+    <string name="card_prompt_body">%1$s can show a card on your home screen. Keeping it hidden leaves the app\'s normal tile as it is.</string>
+    <string name="card_prompt_names">The card is named \'%1$s\'. The app is \'%2$s\'.</string>
+    <string name="card_prompt_resigned">%1$s was updated with a different signing key, so your earlier answer no longer applies. Decide again for its card.</string>
+    <string name="card_prompt_relabelled">%1$s changed the name of its card since you decided. Decide again for it.</string>
+    <string name="card_prompt_hint">You can change this later: hold OK on Settings, then choose Module cards.</string>
+    <string name="card_prompt_identity">%1$s, key %2$s</string>
+    <string name="card_keep_hidden">Keep hidden</string>
+    <string name="card_show">Show card</string>
+    <string name="card_not_saved">Couldn\'t save the choice</string>
+    <string name="module_cards">Module cards</string>
+    <string name="no_module_cards">No module cards installed</string>
+    <string name="card_app_name">App: %1$s</string>
+    <string name="card_state_shown">Shown</string>
+    <string name="card_state_over_limit">Shown, over the limit of 8</string>
+    <string name="card_state_hidden">Hidden</string>
+    <string name="card_state_new">New</string>
+    <string name="card_state_new_key">New key</string>
+    <string name="card_state_new_label">New name</string>
+</resources>

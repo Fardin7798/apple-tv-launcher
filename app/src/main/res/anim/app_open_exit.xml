@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS app launch: Home pushes forward slightly and fades behind the app. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@interpolator/tvos_ease"
+    android:duration="320">
+    <alpha android:fromAlpha="1.0" android:toAlpha="0.0" />
+    <scale android:fromXScale="1.0" android:toXScale="1.06"
+        android:fromYScale="1.0" android:toYScale="1.06"
+        android:pivotX="50%" android:pivotY="50%" />
+</set>

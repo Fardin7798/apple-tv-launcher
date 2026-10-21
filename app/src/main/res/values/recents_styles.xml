@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RecentsPill">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:drawablePadding">9dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="RecentsAction">
+        <item name="android:gravity">center</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">11.5sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="RecentsKey">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">18dp</item>
+        <item name="android:minWidth">22dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">7dp</item>
+        <item name="android:paddingEnd">7dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="RecentsHint">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">7dp</item>
+        <item name="android:layout_marginEnd">27dp</item>
+        <item name="android:alpha">0.6</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+</resources>

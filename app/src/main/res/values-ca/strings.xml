@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Inici</string>
+    <string name="inputs">Entrades</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="settings">Configuració</string>
+    <string name="choose_input">Entrades</string>
+    <string name="connected">Connectat</string>
+    <string name="standby">En espera</string>
+    <string name="not_connected">Cap dispositiu</string>
+    <string name="live_tv">TV en directe</string>
+    <string name="no_inputs">No s\'ha trobat cap entrada</string>
+    <string name="good_morning">Bon dia</string>
+    <string name="good_afternoon">Bona tarda</string>
+    <string name="good_evening">Bon vespre</string>
+    <string name="good_night">Bona nit</string>
+    <string name="ethernet">Ethernet</string>
+    <string name="offline">Sense connexió</string>
+    <string name="not_available">No disponible en aquest televisor</string>
+    <string name="cant_open">No s\'ha pogut obrir %1$s</string>
+    <string name="dream_name">Rellotge</string>
+    <string name="launcher_settings">Configuració del llançador</string>
+    <string name="columns_label">Aplicacions per fila</string>
+    <string name="animations_state">Animacions: %1$s</string>
+    <string name="advanced_effects">Efectes avançats</string>
+    <string name="advanced_effects_state">Efectes avançats: %1$s</string>
+    <string name="advanced_effects_warning">Eleva les targetes, amplia les icones i suavitza els canvis de color. Pot augmentar l’ús de memòria; depèn del televisor.</string>
+    <string name="follow_theme">Segueix el tema (restableix els ajustos)</string>
+    <string name="follow_theme_hint">Utilitza la disposició i els efectes del tema actual o els valors integrats. Aplicar o restablir un tema també esborra aquests ajustos.</string>
+    <string name="tv_settings">Configuració del televisor</string>
+    <string name="on">Activat</string>
+    <string name="off">Desactivat</string>
+    <string name="enable">Activa</string>
+</resources>

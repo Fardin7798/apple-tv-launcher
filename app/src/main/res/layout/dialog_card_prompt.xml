@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The module card prompt as a tvOS 18 alert: platter r48px, centred text inset 48px (Title Bold 31px,
+     description Medium 25px), two stacked 66px buttons inset 32px with a 16px gap.
+     Keep hidden is focused first; Back means Keep hidden too. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/glass_panel"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="16dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:elevation="12dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@color/tvos_label_primary"
+        android:textSize="@dimen/tvos_text_callout"
+        android:fontFamily="sans-serif-black" />
+
+    <TextView
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:textColor="#A6FFFFFF"
+        android:textSize="@dimen/tvos_text_caption1"
+        android:lineSpacingExtra="3sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <TextView
+        android:id="@+id/names"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:textColor="#A6FFFFFF"
+        android:textSize="@dimen/tvos_text_caption1"
+        android:lineSpacingExtra="3sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:text="@string/card_prompt_hint"
+        android:textColor="@color/tvos_label_secondary"
+        android:textSize="@dimen/tvos_text_caption2"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <TextView
+        android:id="@+id/identity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="@color/tvos_label_tertiary"
+        android:textSize="@dimen/tvos_text_caption2"
+        android:letterSpacing="0.02"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- Stacked buttons (kit "2 Stacked Buttons"). -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:clipChildren="false">
+
+        <TextView
+            android:id="@+id/btnKeep"
+            style="@style/AlertButton"
+            android:text="@string/card_keep_hidden"
+            android:nextFocusUp="@+id/btnKeep"
+            android:nextFocusDown="@+id/btnShow"
+            android:nextFocusLeft="@+id/btnKeep"
+            android:nextFocusRight="@+id/btnShow" />
+
+        <TextView
+            android:id="@+id/btnShow"
+            style="@style/AlertButton"
+            android:layout_marginTop="8dp"
+            android:text="@string/card_show"
+            android:nextFocusUp="@+id/btnKeep"
+            android:nextFocusDown="@+id/btnShow"
+            android:nextFocusLeft="@+id/btnKeep"
+            android:nextFocusRight="@+id/btnShow" />
+    </LinearLayout>
+</LinearLayout>

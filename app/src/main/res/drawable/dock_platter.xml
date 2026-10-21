@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS 18 Dock platter (1840x230px, r60px). Not referenced by the layouts: the dock row is built in code,
+     so apply this as the dock row's background there (115dp tall, 20dp side insets). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/tvos_material_light_blur" />
+    <stroke android:width="0.5dp" android:color="@color/tvos_material_stroke" />
+    <corners android:radius="@dimen/tvos_dock_radius" />
+</shape>

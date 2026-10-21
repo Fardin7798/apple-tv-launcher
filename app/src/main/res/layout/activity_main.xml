@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS 18 Home: full-bleed Top Shelf art, a menu bar platter at the top right (clock + Inputs / Wi-Fi /
+     Settings controls, greeting and date to its left), the Top Shelf title above the dock, and the app grid
+     on the kit's 6-column grid (250x150px icons, 48px gaps, first icon at x 90px). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_backdrop">
+
+    <!-- Time-of-day backdrop, drawn once a minute (config.xml sky_intensity; 0 keeps it hidden). -->
+    <com.appletv.launcher.SkyView
+        android:id="@+id/sky"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no" />
+
+    <!-- Ambient glow in the colour of the focused dock app. -->
+    <View
+        android:id="@+id/ambient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0" />
+
+    <!-- Top Shelf title: the focused dock app's name, positioned above the dock in code.
+         tvOS Title 1 Emphasized (76px bold). -->
+    <TextView
+        android:id="@+id/heroName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:alpha="0"
+        android:textColor="@color/tvos_label_primary"
+        android:textSize="@dimen/tvos_text_title1"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="-0.02"
+        android:includeFontPadding="false"
+        android:shadowColor="#73000000"
+        android:shadowDy="1"
+        android:shadowRadius="6"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="25dp">
+
+        <!-- Header row, end-aligned: [greeting · date] [menu bar platter: clock | controls]. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical">
+
+            <!-- The header texts keep gravity right (not end): the launcher lays out left to right (no
+                 supportsRtl), so a right-to-left script still hugs the menu bar. -->
+            <LinearLayout
+                android:id="@+id/leftBlock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="12dp"
+                android:orientation="horizontal"
+                android:gravity="right|center_vertical">
+
+                <TextView
+                    android:id="@+id/greeting"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="#B3FFFFFF"
+                    android:textSize="@dimen/tvos_text_caption1"
+                    android:fontFamily="sans-serif-medium"
+                    android:shadowColor="#73000000"
+                    android:shadowDy="1"
+                    android:shadowRadius="6" />
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="3dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/status_dot"
+                    android:backgroundTint="#B3FFFFFF" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Shamsi date ("27 Mehr 1405"), shown when shamsi_date is on. -->
+                    <TextView
+                        android:id="@+id/shamsiDate"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textColor="#E6FFFFFF"
+                        android:textSize="@dimen/tvos_text_caption1"
+                        android:fontFamily="sans-serif-medium"
+                        android:includeFontPadding="false"
+                        android:visibility="gone" />
+
+                    <TextClock
+                        android:id="@+id/date"
+                        android:gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="@bool/date_single_line"
+                        android:maxLines="2"
+                        android:lineSpacingExtra="2dp"
+                        android:ellipsize="end"
+                        android:format12Hour="@string/date_format_home"
+                        android:format24Hour="@string/date_format_home"
+                        android:textColor="#B3FFFFFF"
+                        android:textSize="@dimen/tvos_text_caption1"
+                        android:fontFamily="sans-serif-medium"
+                        android:shadowColor="#73000000"
+                        android:shadowDy="1"
+                        android:shadowRadius="6" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- tvOS 18 Menu Bar platter (70px): time, then the controls. -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/tvos_menubar_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/menu_bar_bg">
+
+                <TextClock
+                    android:id="@+id/clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8.5dp"
+                    android:format12Hour="h:mm"
+                    android:format24Hour="HH:mm"
+                    android:textColor="#BFFFFFFF"
+                    android:textSize="@dimen/tvos_text_caption1"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false" />
+
+                <TextClock
+                    android:id="@+id/ampm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:format12Hour="a"
+                    android:format24Hour=""
+                    android:textColor="#BFFFFFFF"
+                    android:textSize="@dimen/tvos_text_caption1"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false" />
+
+                <LinearLayout
+                    android:id="@+id/topButtons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6.5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnInputs"
+                        style="@style/TopButton"
+                        android:text="@string/inputs"
+                        android:drawableStart="@drawable/ic_input"
+                        android:nextFocusDown="@+id/grid" />
+
+                    <TextView
+                        android:id="@+id/btnWifi"
+                        style="@style/TopButton"
+                        android:maxWidth="160dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:text="@string/wifi"
+                        android:drawableStart="@drawable/ic_wifi"
+                        android:nextFocusDown="@+id/grid" />
+
+                    <TextView
+                        android:id="@+id/btnSettings"
+                        style="@style/TopButton"
+                        android:text="@string/settings"
+                        android:drawableStart="@drawable/ic_settings"
+                        android:nextFocusDown="@+id/grid" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- The wrapper clips at the grid's edge; the grid itself must not clip so scaled tiles can overflow their cells.
+             33dp side padding = six 149dp cells (125dp icon + 24dp gap), so icons start at x 45dp as in the kit. -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/tvos_grid_inset"
+                android:paddingEnd="@dimen/tvos_grid_inset"
+                android:paddingTop="10dp"
+                android:paddingBottom="6dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:descendantFocusability="afterDescendants" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- The single floating glass highlight that springs between tiles. -->
+    <com.appletv.launcher.GlassView
+        android:id="@+id/glass"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:alpha="0"
+        android:importantForAccessibility="no" />
+</FrameLayout>

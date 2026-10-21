@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Inputs menu: tvOS 18 Control Center platter (r48px, 24px padding) with a Headline title; rows are added in code. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/glass_panel"
+    android:padding="@dimen/tvos_panel_padding"
+    android:elevation="12dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="6dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="@string/choose_input"
+        android:textColor="@color/tvos_label_primary"
+        android:textSize="@dimen/tvos_text_headline"
+        android:fontFamily="sans-serif-black"
+        android:importantForAccessibility="no" />
+
+    <LinearLayout
+        android:id="@+id/rows"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+</LinearLayout>

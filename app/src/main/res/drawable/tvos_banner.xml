@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apple TV style launcher banner (320x180 viewport, 160x90dp = 320x180px @xhdpi).
+     Use in AndroidManifest: android:banner="@drawable/tvos_banner". Gradients need API 24+. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="160dp" android:height="90dp"
+    android:viewportWidth="320" android:viewportHeight="180">
+    <!-- Background: graphite to black -->
+    <path android:pathData="M0,0 H320 V180 H0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="0" android:startY="0" android:endX="0" android:endY="180"
+                android:startColor="#2C2C2E" android:endColor="#0A0A0C" />
+        </aapt:attr>
+    </path>
+    <!-- Soft wave -->
+    <path android:pathData="M0,120 C60,95 120,150 190,118 C250,90 290,110 320,98 L320,180 L0,180 Z" android:fillColor="#FFFFFF" android:fillAlpha="0.05" />
+    <!-- Soft wave -->
+    <path android:pathData="M0,145 C70,120 130,170 200,142 C255,120 295,138 320,128 L320,180 L0,180 Z" android:fillColor="#FFFFFF" android:fillAlpha="0.07" />
+    <!-- Tile shadow -->
+    <path android:pathData="M128,54 h64 a18,18 0 0 1 18,18 v44 a18,18 0 0 1 -18,18 h-64 a18,18 0 0 1 -18,-18 v-44 a18,18 0 0 1 18,-18 Z"
+        android:fillColor="#000000" android:fillAlpha="0.35" />
+    <!-- tvOS-style app tile -->
+    <path android:pathData="M128,50 h64 a18,18 0 0 1 18,18 v44 a18,18 0 0 1 -18,18 h-64 a18,18 0 0 1 -18,-18 v-44 a18,18 0 0 1 18,-18 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="0" android:startY="50" android:endX="0" android:endY="130"
+                android:startColor="#F5F5F7" android:endColor="#C7C7CC" />
+        </aapt:attr>
+    </path>
+    <!-- TV screen glyph -->
+    <path android:pathData="M141,68 h38 a6,6 0 0 1 6,6 v24 a6,6 0 0 1 -6,6 h-38 a6,6 0 0 1 -6,-6 v-24 a6,6 0 0 1 6,-6 Z" android:strokeColor="#1C1C1E" android:strokeWidth="5" android:fillColor="#00000000" />
+    <path android:pathData="M149,79 h9 v6 h-9 Z M162,79 h9 v6 h-9 Z M149,88 h9 v6 h-9 Z M162,88 h9 v6 h-9 Z" android:fillColor="#1C1C1E" />
+    <path android:pathData="M150,113 H170" android:strokeColor="#1C1C1E" android:strokeWidth="5" android:strokeLineCap="round" />
+</vector>

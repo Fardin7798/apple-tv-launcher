@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apple TV Launcher Configuration -->
+<resources>
+
+    <!-- Apps pinned to the dock row at the bottom, in this order. Missing apps are skipped. -->
+    <string-array name="dock_apps">
+        <item>org.smarttube.stable</item>
+        <item>com.spotify.tv.android</item>
+        <item>org.videolan.vlc</item>
+        <item>app.netmirror.newtv</item>
+    </string-array>
+    <!-- With fewer dock_apps than columns (or a dock app that is not installed), the free dock slots take
+         the first grid apps, so the dock never shows a gap. false leaves them empty; a theme can
+         set "fill_dock": false. -->
+    <bool name="fill_dock">true</bool>
+
+    <!-- Apps never shown as tiles (e.g. the Live TV app, which the Inputs menu already covers). -->
+    <string-array name="hidden_apps">
+        <item>com.android.tv</item>
+        <item>com.mitv.gallery</item>
+    </string-array>
+
+    <!-- The TV's Live TV / tuner app, offered at the end of the Inputs menu. Leave empty to omit. -->
+    <string name="live_tv_package" translatable="false">com.android.tv</string>
+
+    <!-- Some TVs give their Live TV app no leanback entry point at all, so `live_tv_package` above
+         resolves to nothing (TCL Android TV 9 on China-market sets is one). This action is then sent
+         to that package instead, and the app starts normally. Leave empty to omit. -->
+    <string name="live_tv_action" translatable="false"></string>
+
+    <!-- TVs with no TvInputManager have no HDMI list to read, but their own source-selection panel
+         still switches inputs (TCL Android TV 9 again). When nothing could be listed, the Inputs menu
+         offers one row that starts this service: component first, then action. Leave empty to omit. -->
+    <string name="source_panel_service" translatable="false"></string>
+    <string name="source_panel_action" translatable="false"></string>
+
+    <!-- Inputs menu: HDMI and AV rows normally open with ACTION_VIEW on the input's channel URI, which the
+         Live TV app handles. Where nothing answers that, this action is sent with the same URI instead
+         (XGIMI projectors: com.xgimi.action.hdmiPlayer). Leave empty to omit. -->
+    <string name="input_action" translatable="false"></string>
+    <!-- Remote buttons that open Settings by Linux scancode. Leave empty to omit. -->
+    <integer-array name="settings_key_scancodes">
+    </integer-array>
+    <!-- The same by Android keycode, for buttons whose scancode is shared. TCL Google TV remotes send their
+         Settings button as keycode 83 (KEYCODE_NOTIFICATION, which the stock Google TV home turned into its quick
+         settings panel) on scancode 240 (KEY_UNKNOWN), the scancode several TCL buttons share. Leave empty to omit.
+         Both keys can also be set from a theme's config.json ("settings_key_keycodes": [83]). -->
+    <integer-array name="settings_key_keycodes">
+    </integer-array>
+    <bool name="settings_key_panel">false</bool>
+
+    <!-- Show the Solar Hijri (Shamsi) date used in Iran and Afghanistan, e.g. "27 Mehr 1405", above the
+         Gregorian date. -->
+    <bool name="shamsi_date">false</bool>
+    <!-- Optional VPN app the network pill opens (hold the pill for Wi-Fi settings), e.g. the package of the
+         VPN you use. Empty: the pill opens Wi-Fi settings. The green VPN badge shows for any VPN either way;
+         with an app set here, a red "VPN off" badge also shows while no VPN is up. -->
+    <string name="vpn_app" translatable="false"></string>
+    <!-- Grid rows left visible under the dock on the home screen. 0 = dock sits at the very bottom. -->
+    <integer name="rows_below_dock">0</integer>
+
+    <!-- Tiles per row in the grid; the dock always has this many slots. Tiles are 180dp wide at 4 columns and
+         shrink to fit from 5 up (about 144dp at 5, 117dp at 6 on a 1080p TV).
+         tvOS 18 redesign: 6, the kit's home grid (six 250x150px icons per row). Was 4. -->
+    <integer name="columns">6</integer>
+
+    <!-- Basic motion is on; advanced effects are opt-in in the launcher's own Settings screen. -->
+    <bool name="animations">true</bool>
+    <bool name="advanced_effects">false</bool>
+
+    <!-- Optional Default-home tile; keep this key for existing themes and tile-ordering work.
+         Off by default because the chooser is also available from launcher settings. -->
+    <bool name="show_home_settings_shortcut">false</bool>
+
+    <!-- Module cards: an app that declares a card (docs/specs/card.md) can stand in for its tile with its own
+         label, caption and glow colour, once you answer Show on the prompt. false: never look for cards or ask. -->
+    <bool name="module_cards">true</bool>
+
+    <!-- Reduced motion: for TVs whose GPU cannot keep up (MediaTek MT5895 on Android 10 is the known case).
+         true keeps the GPU drawing path but calms the movement: a stiff highlight spring with no bounce,
+         tiles that zoom without overshoot, shorter fades and no tile entrance when Home comes back. Set it
+         here or with "reduced_motion": true in a theme's config.json; false keeps the normal motion. -->
+    <bool name="reduced_motion">false</bool>
+
+    <!-- Time-of-day backdrop behind everything: a dark gradient that follows the clock, with a warm
+         horizon glow around sunrise and sunset. 0 keeps the plain background (the default); 1 to 100
+         sets its opacity. Around 60 reads clearly without hiding a wallpaper. Can also be set with
+         "sky_intensity": 60 in a theme's config.json. -->
+    <integer name="sky_intensity">0</integer>
+</resources>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Recents screen · 1920x1080 TV = 960x540dp (xhdpi). Backgrounds/glow are applied in RecentAppsActivity. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0A14"
+    android:clipChildren="false">
+
+    <!-- Red radial glow (colour follows the focused app) -->
+    <View
+        android:id="@+id/glowBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Bottom vignette -->
+    <View
+        android:id="@+id/vignette"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="42dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.72"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.23"
+            android:text="RECENTS"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:text="Recently used"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/txtSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:alpha="0.6"
+            android:fontFamily="sans-serif"
+            android:text="5 apps open  ·  1.2 GB memory free"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- Top-right pills -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="42dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnClearAll"
+            style="@style/RecentsPill"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginEnd="10dp"
+            android:text="Clear all" />
+
+        <TextView
+            android:id="@+id/btnSettings"
+            style="@style/RecentsPill"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="Settings" />
+    </LinearLayout>
+
+    <!-- Cards row: focused card 320x180dp, others 240x135dp, bottom-aligned -->
+    <HorizontalScrollView
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginTop="168dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/cardRow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingStart="54dp"
+            android:paddingEnd="54dp" />
+    </HorizontalScrollView>
+
+    <!-- Actions for the selected app -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="440dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnOpen"
+            style="@style/RecentsAction"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:text="Open" />
+
+        <TextView
+            android:id="@+id/btnClose"
+            style="@style/RecentsAction"
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:text="Close app" />
+
+        <TextView
+            android:id="@+id/btnInfo"
+            style="@style/RecentsAction"
+            android:layout_width="85dp"
+            android:layout_height="30dp"
+            android:text="App info" />
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="58dp"
+        android:alpha="0.10"
+        android:background="#FFFFFF" />
+
+    <!-- Remote hint bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="28dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/key1" style="@style/RecentsKey" android:text="◀ ▶" />
+        <TextView style="@style/RecentsHint" android:text="Browse" />
+        <TextView android:id="@+id/key2" style="@style/RecentsKey" android:text="OK" />
+        <TextView style="@style/RecentsHint" android:text="Open" />
+        <TextView android:id="@+id/key3" style="@style/RecentsKey" android:text="▼" />
+        <TextView style="@style/RecentsHint" android:text="Close app" />
+        <TextView android:id="@+id/key4" style="@style/RecentsKey" android:text="BACK" />
+        <TextView style="@style/RecentsHint" android:text="Home" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.45"
+            android:fontFamily="sans-serif-medium"
+            android:format12Hour="h:mm a  ·  EEE d MMM"
+            android:format24Hour="HH:mm  ·  EEE d MMM"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+    </LinearLayout>
+</FrameLayout>

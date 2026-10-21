@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One home tile: tvOS 250x150px app icon (125x75dp, r15dp). The code sizes the card per column count
+     and scales it on focus (kit: x1.2267 with a 0/30/40px shadow at 35%, see dimens tvos_focus_scale_icon). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="8dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <FrameLayout
+        android:id="@+id/card"
+        android:layout_width="@dimen/tvos_icon_w"
+        android:layout_height="@dimen/tvos_icon_h"
+        android:layout_gravity="center_horizontal|top"
+        android:background="@drawable/tile_bg"
+        android:outlineProvider="background"
+        android:clipToOutline="true"
+        android:elevation="2dp"
+        android:focusable="true"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="6dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/tvos_label_primary"
+            android:textSize="@dimen/tvos_text_caption2"
+            android:fontFamily="sans-serif-medium"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- App name under the focused icon (tvOS Caption 1 semibold); faded in by code. -->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="149dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="94dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:alpha="0"
+        android:translationY="-6dp"
+        android:textColor="@color/tvos_label_primary"
+        android:textSize="@dimen/tvos_text_caption1"
+        android:fontFamily="sans-serif-medium"
+        android:shadowColor="#73000000"
+        android:shadowDy="1"
+        android:shadowRadius="4" />
+</FrameLayout>

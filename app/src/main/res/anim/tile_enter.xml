@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tiles rise into the dock with a soft spring. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@interpolator/tvos_spring"
+    android:duration="460">
+    <alpha android:fromAlpha="0.0" android:toAlpha="1.0" android:interpolator="@interpolator/tvos_ease" />
+    <translate android:fromYDelta="14%" android:toYDelta="0%" />
+    <scale
+        android:fromXScale="0.92" android:toXScale="1.0"
+        android:fromYScale="0.92" android:toYScale="1.0"
+        android:pivotX="50%" android:pivotY="50%" />
+</set>

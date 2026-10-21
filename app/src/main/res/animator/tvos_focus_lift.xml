@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS focus for cards and tiles: scale 1.1 + lift (translationZ) with a spring. Use as android:stateListAnimator on views the code does not already scale. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <set>
+            <objectAnimator android:propertyName="scaleX" android:valueTo="1.1" android:duration="260" android:interpolator="@interpolator/tvos_spring" android:valueType="floatType" />
+            <objectAnimator android:propertyName="scaleY" android:valueTo="1.1" android:duration="260" android:interpolator="@interpolator/tvos_spring" android:valueType="floatType" />
+            <objectAnimator android:propertyName="translationZ" android:valueTo="15dp" android:duration="260" android:interpolator="@interpolator/tvos_ease" android:valueType="floatType" />
+        </set>
+    </item>
+    <item>
+        <set>
+            <objectAnimator android:propertyName="scaleX" android:valueTo="1.0" android:duration="200" android:interpolator="@interpolator/tvos_ease" android:valueType="floatType" />
+            <objectAnimator android:propertyName="scaleY" android:valueTo="1.0" android:duration="200" android:interpolator="@interpolator/tvos_ease" android:valueType="floatType" />
+            <objectAnimator android:propertyName="translationZ" android:valueTo="0dp" android:duration="200" android:interpolator="@interpolator/tvos_ease" android:valueType="floatType" />
+        </set>
+    </item>
+</selector>

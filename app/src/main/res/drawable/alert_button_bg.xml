@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS 18 alert button: #2C2C2E r16px; focused white. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/tvos_button_focused" />
+            <corners android:radius="@dimen/tvos_button_radius" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/tvos_button" />
+            <corners android:radius="@dimen/tvos_button_radius" />
+        </shape>
+    </item>
+</selector>

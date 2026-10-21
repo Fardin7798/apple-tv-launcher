@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Control Center / menu tile: 96px tall r24px with a 16px gap, drawn as a 4dp inset inside a 56dp row
+     so rows added by code get the gap without margins. Unfocused: fill tertiary (white 12%); focused: white. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <inset android:insetTop="4dp" android:insetBottom="4dp">
+            <shape android:shape="rectangle">
+                <solid android:color="#FFFFFFFF" />
+                <corners android:radius="@dimen/tvos_tile_radius" />
+            </shape>
+        </inset>
+    </item>
+    <item>
+        <inset android:insetTop="4dp" android:insetBottom="4dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/tvos_fill_tertiary" />
+                <corners android:radius="@dimen/tvos_tile_radius" />
+            </shape>
+        </inset>
+    </item>
+</selector>

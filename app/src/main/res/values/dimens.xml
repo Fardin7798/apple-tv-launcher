@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tvOS 18 metrics from the Apple tvOS 18 kit, converted at 1920x1080 = 960x540dp (1dp = 2px). -->
+<resources>
+    <!-- Safe area: 80px sides, 60px top/bottom -->
+    <dimen name="tvos_safe_h">40dp</dimen>
+    <dimen name="tvos_safe_v">30dp</dimen>
+    <!-- App icon 250x150px, r30; focused 306x184px, r38; 48px gap; first icon at x 90px -->
+    <dimen name="tvos_icon_w">125dp</dimen>
+    <dimen name="tvos_icon_h">75dp</dimen>
+    <dimen name="tvos_icon_radius">15dp</dimen>
+    <dimen name="tvos_icon_radius_focused">19dp</dimen>
+    <dimen name="tvos_icon_gap">24dp</dimen>
+    <dimen name="tvos_grid_inset">33dp</dimen>
+    <!-- Dock platter 1840x230px, r60 -->
+    <dimen name="tvos_dock_height">115dp</dimen>
+    <dimen name="tvos_dock_radius">30dp</dimen>
+    <!-- Menu bar platter 70px, controls 58px -->
+    <dimen name="tvos_menubar_height">35dp</dimen>
+    <dimen name="tvos_menubar_control">29dp</dimen>
+    <!-- Panels (Control Center, alerts): r48, padding 24, 96px button unit, 16px gap, CC 480px wide -->
+    <dimen name="tvos_panel_radius">24dp</dimen>
+    <dimen name="tvos_panel_padding">12dp</dimen>
+    <dimen name="tvos_cc_width">240dp</dimen>
+    <dimen name="tvos_cc_unit">48dp</dimen>
+    <dimen name="tvos_cc_gap">8dp</dimen>
+    <dimen name="tvos_tile_radius">12dp</dimen>
+    <!-- Alert buttons 66px, r16; alert text inset 48px -->
+    <dimen name="tvos_button_height">33dp</dimen>
+    <dimen name="tvos_button_radius">8dp</dimen>
+    <dimen name="tvos_alert_text_inset">24dp</dimen>
+    <!-- Type ramp (SF Pro sizes in the kit, set in Inter) -->
+    <dimen name="tvos_text_title1">38sp</dimen>
+    <dimen name="tvos_text_title2">28.5sp</dimen>
+    <dimen name="tvos_text_title3">24sp</dimen>
+    <dimen name="tvos_text_headline">19sp</dimen>
+    <dimen name="tvos_text_callout">15.5sp</dimen>
+    <dimen name="tvos_text_body">14.5sp</dimen>
+    <dimen name="tvos_text_caption1">12.5sp</dimen>
+    <dimen name="tvos_text_caption2">11.5sp</dimen>
+    <!-- Focus: kit dock icon grows 250 to 306.67px (x1.2267) with a 0/30/40 shadow at 35%;
+         cards use x1.1, alert buttons and rows grow x1.045 (440 to 460px). -->
+    <item name="tvos_focus_scale_icon" format="float" type="dimen">1.2267</item>
+    <item name="tvos_focus_scale_card" format="float" type="dimen">1.1</item>
+    <item name="tvos_focus_scale_control" format="float" type="dimen">1.045</item>
+    <dimen name="tvos_focus_elevation">15dp</dimen>
+    <dimen name="tvos_focus_elevation_control">6dp</dimen>
+</resources>
