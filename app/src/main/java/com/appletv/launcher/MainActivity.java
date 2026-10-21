@@ -474,7 +474,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         if (openLauncherSettingsIfAsked(intent)) return;
         if (intent == null || !intent.hasCategory(Intent.CATEGORY_HOME)) return;
         long now = android.os.SystemClock.uptimeMillis();
-        android.util.Log.e("TVHomeKey", "onNewIntent: delta=" + (now - lastHomePressTime));
+        android.util.Log.e("AppleTv.HomeKey", "onNewIntent: delta=" + (now - lastHomePressTime));
         if (now - lastHomePressTime < 1200) {
             lastHomePressTime = 0;
             try {
@@ -644,7 +644,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     public boolean dispatchKeyEvent(KeyEvent event) {
         int keyCode = event.getKeyCode();
         int scanCode = event.getScanCode();
-        android.util.Log.e("TVHomeKey", "dispatch: action=" + event.getAction() + " key=" + keyCode + " scan=" + scanCode);
+        android.util.Log.e("AppleTv.HomeKey", "dispatch: action=" + event.getAction() + " key=" + keyCode + " scan=" + scanCode);
         if (keyCode == KeyEvent.KEYCODE_BUTTON_2 || keyCode == KeyEvent.KEYCODE_APP_SWITCH || keyCode == KeyEvent.KEYCODE_MENU || scanCode == 150 || scanCode == 580) {
             if (event.getAction() == KeyEvent.ACTION_UP) {
                 try {
@@ -652,7 +652,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
                     recents.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(recents);
                 } catch (Exception e) {
-                    android.util.Log.e("TVHomeKey", "startActivity failed", e);
+                    android.util.Log.e("AppleTv.HomeKey", "startActivity failed", e);
                 }
             }
             return true;

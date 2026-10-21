@@ -28,7 +28,7 @@ import java.util.List;
  * Read once in {@link MainActivity#onCreate}; nothing here touches the network.
  */
 final class Config {
-    private static final String TAG = "TvHome.Config";
+    private static final String TAG = "AppleTv.Config";
     static final String FILE_NAME = "config.json";
     static final String WALLPAPER_NAME = "wallpaper.jpg";
     static final String SETTINGS_NAME = "launcher_settings";
