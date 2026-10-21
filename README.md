@@ -1,6 +1,8 @@
 # Apple TV Launcher for Android TV
 
 <p align="center">
+  <a href="https://github.com/Fardin7798/apple-tv-launcher/releases/latest"><img src="https://img.shields.io/github/v/release/Fardin7798/apple-tv-launcher?color=success&label=Release" alt="Release"></a>
+  <a href="https://github.com/Fardin7798/apple-tv-launcher/releases/latest/download/app-release.apk"><img src="https://img.shields.io/badge/Download-APK%20(218%20KB)-brightgreen?logo=android" alt="Download APK"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
   <a href="https://developer.android.com/about/versions/pie"><img src="https://img.shields.io/badge/Android%20TV-9.0%2B-blue.svg" alt="Android TV"></a>
   <img src="https://img.shields.io/badge/APK%20Size-218%20KB-success.svg" alt="Size">

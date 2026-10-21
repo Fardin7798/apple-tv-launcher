@@ -215,8 +215,15 @@ echo "==> Installing SmartTube (Ad-Free, SponsorBlock, TV-Optimized)..."
 # 8. Apple TV Launcher Installation
 APK_PATH="$ROOT_DIR/app/build/outputs/apk/release/app-release.apk"
 if [ ! -f "$APK_PATH" ]; then
-    echo "==> Compiling Apple TV Launcher APK..."
-    (cd "$ROOT_DIR" && ./gradlew assembleRelease)
+    if command -v javac >/dev/null 2>&1 && [ -f "$ROOT_DIR/gradlew" ]; then
+        echo "==> Compiling Apple TV Launcher APK from source..."
+        (cd "$ROOT_DIR" && ./gradlew assembleRelease) || true
+    fi
+    if [ ! -f "$APK_PATH" ]; then
+        echo "==> Fetching pre-compiled release APK (218 KB) from GitHub Releases..."
+        mkdir -p "$(dirname "$APK_PATH")"
+        curl -sSL -f -o "$APK_PATH" "https://github.com/Fardin7798/apple-tv-launcher/releases/latest/download/app-release.apk"
+    fi
 fi
 
 echo "==> Installing Apple TV Launcher (218 KB release)..."
