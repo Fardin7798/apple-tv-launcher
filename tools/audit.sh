@@ -91,6 +91,9 @@ IS_GTV=$(tv getprop ro.com.google.gmsversion | grep -q "Google TV" && echo "Goog
 ADB_PORT=$(tv getprop service.adb.tcp.port || echo "unknown")
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# Capture baseline Day-1 untouched snapshot
+"$SCRIPT_DIR/backup.sh" "$DEV" "original" >/dev/null 2>&1 || true
+
 # SECTION 2: HARDWARE HEALTH
 # ═══════════════════════════════════════════════════════════════════════════════
 echo "==> [2/7] Reading hardware health (RAM / Storage)..."

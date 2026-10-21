@@ -68,14 +68,11 @@ if [ -n "$SDK_VER" ] && [ "$SDK_VER" -lt 28 ]; then
 fi
 
 # ── PHASE 1: Safety Snapshot Backup ──────────────────────────────
-BACKUP_DIR="$ROOT_DIR/backups"
-mkdir -p "$BACKUP_DIR"
+# ── PHASE 1: Safety Snapshot Backup ──────────────────────────────
 TS=$(date +"%Y%m%d_%H%M%S")
-BACKUP_FILE="$BACKUP_DIR/backup_${TS}.txt"
-echo "==> [Phase 1] Creating safety snapshot: $BACKUP_FILE"
-adb -s "$TARGET_DEV" shell pm list packages -e | sed 's/package://' | sort > "$BACKUP_FILE"
-echo "    Snapshot saved. Reversible anytime with: ./tools/restore.sh $BACKUP_FILE $TARGET_DEV"
-
+SNAPSHOT_DIR=$("$SCRIPT_DIR/backup.sh" "$TARGET_DEV" "$TS" | tail -n 1)
+echo "==> [Phase 1] Full system state saved to: $SNAPSHOT_DIR"
+echo "    Reversible anytime with: ./tools/restore.sh $SNAPSHOT_DIR $TARGET_DEV"
 # ── Check if INSTALL_LAUNCHER is ticked in plan ──────────────────
 WANTS_LAUNCHER=false
 if grep -qF '[x] INSTALL_LAUNCHER' "$PLAN_FILE"; then

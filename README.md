@@ -131,15 +131,19 @@ Pre-configured, verified debloat profiles are organized in [`profiles/`](profile
 
 ---
 
-## ⏪ Instant Rollback & Restore
+## ⏪ Instant Rollback & True Full-State Restore
 
-Every modification is 100% reversible. To restore all original system packages on your TV:
+Every modification is 100% reversible. A complete snapshot of your TV's original state (enabled packages, original default Home launcher, animation scales, and system settings) is preserved.
+
+To restore your TV back to its exact untouched factory state:
 ```bash
-./tools/restore.sh backups/<backup_file>.txt <TV_IP>:5555
+./tools/restore.sh backups/<device_snapshot_directory>
 ```
-
----
-
+*What the restore engine does:*
+- 🔄 Re-enables all original system packages.
+- 📺 Restores your original stock launcher as the default Home.
+- ⚡ Reverts animation scales back to original values.
+- 🍎 Offers interactive clean uninstallation of Apple TV Launcher and SmartTube.
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
