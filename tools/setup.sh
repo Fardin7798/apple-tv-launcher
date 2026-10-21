@@ -27,19 +27,31 @@ if [ -z "$TARGET_HOST" ]; then
     if [ -n "$DEVICES" ]; then
         TARGET_DEV=$(echo "$DEVICES" | head -n 1)
         echo "==> Detected currently connected ADB device: $TARGET_DEV"
-        if [ ! -t 0 ]; then
-            echo "Error: Non-interactive mode detected. Please specify TV IP as an argument (e.g. ./tools/setup.sh 192.168.1.50) or set TV_HOST=<ip>." >&2
-            exit 1
+    else
+        # Try mDNS discovery on local network
+        MDNS_DEV=$(adb mdns services 2>/dev/null | grep -E '_adb\._tcp|_adb-tls-connect\._tcp' | head -n 1 | awk '{print $NF}' || true)
+        if [ -n "$MDNS_DEV" ]; then
+            echo "==> Auto-discovered Android TV via mDNS: $MDNS_DEV"
+            TARGET_DEV="$MDNS_DEV"
+        else
+            if [ ! -t 0 ]; then
+                echo "Error: Non-interactive mode detected and no device found." >&2
+                echo "Please specify TV IP (e.g. ./tools/setup.sh 192.168.1.50) or set TV_HOST=<ip>." >&2
+                exit 1
+            fi
+            echo ""
+            echo "ℹ️  How to find your TV IP address:"
+            echo "    On your TV: Go to Settings ⚙️ -> Network & Internet -> Click your connected Wi-Fi -> Look for 'IP address'"
+            echo ""
+            read -r -p "Enter your Android TV IP address (e.g. 192.168.1.50): " TARGET_HOST
+            if [ -z "$TARGET_HOST" ]; then
+                echo "Error: TV IP address is required." >&2
+                exit 1
+            fi
+            echo "==> Connecting to $TARGET_HOST:5555..."
+            adb connect "$TARGET_HOST:5555" || true
+            TARGET_DEV="$TARGET_HOST:5555"
         fi
-        read -r -p "Enter your Android TV IP address (e.g. 192.168.1.50): " TARGET_HOST
-        read -r -p "Enter your Android TV IP address (e.g. 192.168.1.50): " TARGET_HOST
-        if [ -z "$TARGET_HOST" ]; then
-            echo "Error: TV IP address is required." >&2
-            exit 1
-        fi
-        echo "==> Connecting to $TARGET_HOST:5555..."
-        adb connect "$TARGET_HOST:5555" || true
-        TARGET_DEV="$TARGET_HOST:5555"
     fi
 else
     if [[ "$TARGET_HOST" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then

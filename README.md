@@ -41,13 +41,25 @@ An ultra-lightweight, bloat-free Android TV launcher featuring a native **Apple 
 
 Transform any Android TV or Google TV into an ultra-clean, ad-free Apple TV experience with automated debloating, SmartTube installation, and the 218 KB Apple TV launcher.
 
-### Option 1: Automated 1-Click Setup (Recommended)
+### 🤖 Option 1: Easiest Setup with Any AI Agent (Recommended for Beginners)
 
-1. Enable **Developer Options** and **Network / USB Debugging** on your Android TV.
-2. Connect to your TV and run the setup wizard:
+Don't want to deal with terminal commands? You can give this repository to any AI coding assistant (**Claude Code, Cursor, Devin, Antigravity, Roo Code, Windsurf, ChatGPT**):
+
+| Step | Action |
+|---|---|
+| **1. On your TV** | Settings ➔ Device Preferences ➔ About ➔ Press OK on **Build** 7 times. Back ➔ Developer options ➔ Turn **USB Debugging** ON. |
+| **2. In your AI Agent** | Copy and paste [`PROMPT.md`](PROMPT.md) into your assistant chat. |
+| **3. Relax** | Your assistant connects, auto-detects your TV model, creates a safety backup, removes ads/bloat, installs SmartTube, sets up Apple TV Launcher, and verifies everything! |
+
+---
+
+### 💻 Option 2: 1-Click Terminal Script (For Power Users)
+
+If you prefer running a direct terminal script:
 
 **Linux / macOS:**
 ```bash
+# Connects, auto-detects model, debloats, installs SmartTube & launcher
 ./tools/setup.sh <TV_IP>
 ```
 
