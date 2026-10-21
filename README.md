@@ -33,12 +33,10 @@ An ultra-lightweight, bloat-free Android TV launcher featuring a native **Apple 
 
 | | |
 |---|---|
-| ![Clean Home Screen](docs/Homescreen.png) | ![Home Grid Navigation](docs/HomeScreenRow.png) |
-| *Minimalist Pitch-Black Leanback Grid* | *Multi-Row Grid Navigation & Dynamic Ambient Glow* |
-| ![Recent Apps Switcher](docs/RecentTab.png) | ![Control Center](docs/Control_Center.png) |
-| *Native Apple TV App Switcher (Double-Press Home)* | *Quick Settings & Control Center Platter* |
-| ![tvOS Split-Pane Settings](docs/Settings.png) | |
-| *tvOS 18 Split-Pane Launcher Settings* | |
+| ![Recent Apps Switcher](docs/RecentTab.png) | ![Home Grid Navigation](docs/HomeScreenRow.png) |
+| *Native Apple TV App Switcher (Double-Press Home)* | *Multi-Row Grid Navigation & Dynamic Ambient Glow* |
+| ![Control Center](docs/Control_Center.png) | ![tvOS Split-Pane Settings](docs/Settings.png) |
+| *Quick Settings & Control Center Platter* | *tvOS 18 Split-Pane Launcher Settings* |
 ---
 
 ## 🚀 Quick Start
