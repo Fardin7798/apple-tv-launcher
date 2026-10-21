@@ -82,6 +82,7 @@ bash reports/apply_<ts>.sh
 ```
 
 *(Alternatively, run the interactive 1-click suite directly: `./tools/setup.sh <TV_IP>`)*
+
 **What the automated setup does:**
 - 🔍 **Auto-detects TV hardware & manufacturer** (Sony, TCL, Xiaomi, OnePlus, Hisense, Shield, Chromecast).
 - 💾 **Creates an instant full-state safety snapshot** of all currently enabled packages, default Home launcher, animation scales, and system settings.
@@ -91,7 +92,7 @@ bash reports/apply_<ts>.sh
 
 ---
 
-### Option 2: Standalone Launcher Installation
+### 🛠️ Option 3: Standalone Launcher Installation
 
 If you only want the ultra-lightweight launcher without debloating:
 ```bash
@@ -106,6 +107,9 @@ adb install -r app/build/outputs/apk/release/app-release.apk
 
 # 4. Set as permanent default Home launcher
 adb shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity
+
+# 5. Grant usage access for Recent Apps Switcher
+adb shell appops set com.appletv.launcher GET_USAGE_STATS allow
 ```
 
 ---

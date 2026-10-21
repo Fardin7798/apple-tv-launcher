@@ -10,7 +10,7 @@ import android.view.accessibility.AccessibilityEvent;
  * Maps the remote's Input button to the system input switcher, from any app. Remotes such as the Chromecast voice
  * remote send KEYCODE_TV for it; on Google TV the stock launcher handles that key, so with the stock launcher
  * disabled the button does nothing. Only KEYCODE_TV is consumed; every other key passes through untouched.
- * Opt-in: INPUT_KEY_SERVICE=1 build-and-install.sh (or -InputKeyService on Windows) enables it.
+ * Opt-in: INPUT_KEY_SERVICE=1 tools/setup.sh enables it.
  */
 public class InputKeyService extends AccessibilityService {
 

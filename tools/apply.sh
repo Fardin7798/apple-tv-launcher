@@ -113,6 +113,12 @@ if [ "$WANTS_LAUNCHER" = true ]; then
     fi
     echo "    Launcher verified runnable."
 
+    echo "==> [Phase 2] Granting permissions for Recent Apps Switcher and Remote Keys..."
+    adb -s "$TARGET_DEV" shell appops set com.appletv.launcher GET_USAGE_STATS allow >/dev/null 2>&1 || true
+    adb -s "$TARGET_DEV" shell settings put secure enabled_accessibility_services com.appletv.launcher/.HomeKeyService >/dev/null 2>&1 || true
+    adb -s "$TARGET_DEV" shell settings put secure accessibility_enabled 1 >/dev/null 2>&1 || true
+    echo "    ✅ Permissions granted: GET_USAGE_STATS (Recent Apps) & HomeKeyService."
+
     # ── PHASE 3: Set Home Activity & Verify ─────────────────────────
     echo "==> [Phase 3] Setting Apple TV Launcher as default Home..."
     adb -s "$TARGET_DEV" shell cmd package set-home-activity --user 0 com.appletv.launcher/.MainActivity >/dev/null 2>&1 || true

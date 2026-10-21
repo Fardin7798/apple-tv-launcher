@@ -103,7 +103,7 @@
             </intent-filter>
         </receiver>
         <!-- Home button for remotes that send KEYCODE_ALL_APPS (Xiaomi). Opt-in: HOME_KEY_SERVICE=1
-             build-and-install.sh; see HomeKeyService. -->
+             enabled automatically by tools/apply.sh; see HomeKeyService. -->
         <service
             android:name=".HomeKeyService"
             android:label="@string/home_key_name"
