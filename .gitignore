@@ -10,3 +10,9 @@ app/debug.keystore
 CONTEXT.md
 backups/
 build/downloads/
+
+# Audit report outputs (device-specific, not for version control)
+reports/*.md
+reports/*.txt
+reports/*.sh
+!reports/.gitkeep
