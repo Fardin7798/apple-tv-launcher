@@ -114,6 +114,73 @@ esac
 
 echo "==> Auto-selected debloat profile: $(basename "$SELECTED_PROFILE")"
 
+# 5. Pre-Flight TV Audit & Analysis Report
+echo ""
+echo "=========================================================="
+echo "                 📋 TV Pre-Flight Audit Report             "
+echo "=========================================================="
+echo "  • Device:         $MANUFACTURER $MODEL (Android $ANDROID_VER)"
+echo "  • Matched Profile: $(basename "$SELECTED_PROFILE")"
+echo ""
+CURRENT_PACKAGES=$(adb -s "$TARGET_DEV" shell pm list packages 2>/dev/null | sed 's/package://' | tr -d '\r' || true)
+TOTAL_PKGS=$(echo "$CURRENT_PACKAGES" | grep -v '^$' | wc -l || echo "0")
+echo "  • Total Packages Installed on TV: $TOTAL_PKGS"
+echo ""
+echo "  • Identified Bloatware to Disable:"
+BLOAT_COUNT=0
+if [ -f "$SELECTED_PROFILE" ]; then
+    while IFS= read -r line || [ -n "$line" ]; do
+        PKG=$(echo "$line" | sed -e 's/#.*//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+        if [ -n "$PKG" ]; then
+            if echo "$CURRENT_PACKAGES" | grep -qx "$PKG"; then
+                echo "    🛑 $PKG"
+                BLOAT_COUNT=$((BLOAT_COUNT + 1))
+            fi
+        fi
+    done < "$SELECTED_PROFILE"
+fi
+echo "    (Total $BLOAT_COUNT bloatware packages found on device)"
+echo ""
+echo "  • Detected Streaming & Media Apps:"
+if echo "$CURRENT_PACKAGES" | grep -qx "com.google.android.youtube.tv"; then
+    echo "    📺 YouTube (Stock ad-supported) -> Will replace with SmartTube"
+fi
+if echo "$CURRENT_PACKAGES" | grep -qx "org.smarttube.stable" || echo "$CURRENT_PACKAGES" | grep -qx "com.teamsmart.videomanager.tv"; then
+    echo "    📺 SmartTube -> Already installed"
+fi
+if echo "$CURRENT_PACKAGES" | grep -qx "com.netflix.ninja"; then
+    echo "    📺 Netflix -> Protected / Left Intact"
+fi
+if echo "$CURRENT_PACKAGES" | grep -qx "com.amazon.amazonvideo.livingroom"; then
+    echo "    📺 Prime Video -> Protected / Left Intact"
+fi
+if echo "$CURRENT_PACKAGES" | grep -qx "in.startv.hotstar"; then
+    echo "    📺 Disney+ Hotstar -> Protected / Left Intact"
+fi
+echo ""
+echo "  • Core Protected Services (NEVER TOUCHED):"
+echo "    🛡️  Chromecast Built-in (com.google.android.apps.mediashell) [SAFE]"
+echo "    🛡️  Google Assistant Voice Search (com.google.android.katniss) [SAFE]"
+echo "    🛡️  Gboard Keyboard & System IME [SAFE]"
+echo "    🛡️  Wi-Fi, Bluetooth & Hardware Drivers [SAFE]"
+echo "=========================================================="
+echo ""
+AUTO_CONFIRM=false
+for arg in "$@"; do
+    if [ "$arg" = "-y" ] || [ "$arg" = "--yes" ]; then
+        AUTO_CONFIRM=true
+    fi
+done
+if [ "$AUTO_CONFIRM" = false ] && [ -t 0 ]; then
+    read -r -p "Do you want to proceed with this debloat and setup plan? [Y/n]: " PROCEED_REPLY
+    case "$PROCEED_REPLY" in
+        [nN][oO]|[nN])
+            echo "Operation cancelled by user. No changes were made to your TV."
+            exit 0
+            ;;
+    esac
+fi
+
 # 5. Snapshot Current Packages (Safe Recovery Guarantee)
 BACKUP_DIR="$ROOT_DIR/backups"
 mkdir -p "$BACKUP_DIR"

@@ -8,3 +8,5 @@ local.properties
 *.apk
 app/debug.keystore
 CONTEXT.md
+backups/
+build/downloads/
