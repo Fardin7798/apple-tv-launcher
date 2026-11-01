@@ -1,0 +1,7 @@
+<!-- View ids reserved for the screensaver's clock, AM/PM and date views. Nothing looks them up
+     today; they are declared so the generated id table stays stable. -->
+<resources>
+    <item type="id" name="spiderDreamMeridiem"/>
+    <item type="id" name="spiderDreamTime"/>
+    <item type="id" name="spiderDreamDate"/>
+</resources>

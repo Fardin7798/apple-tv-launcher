@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spider theme palette (from the FigCraft design). -->
+<resources>
+    <color name="spider_bg_top">#000000</color>
+    <color name="spider_bg_bottom">#1A1060</color>
+    <color name="spider_glow">#9A55C8</color>
+    <color name="spider_web">#21B8B4E6</color>
+    <color name="spider_thread">#D9FFFFFF</color>
+    <color name="spider_silk">#FFFFFF</color>
+    <color name="spider_tile_glass">#3A3458</color>
+    <color name="spider_tile_focus">#5A4C86</color>
+    <color name="spider_tile_border">#26FFFFFF</color>
+    <color name="spider_focus_outline">#FFFFFF</color>
+    <color name="spider_focus_glow">#B9A8FF</color>
+    <color name="spider_pill_top">#F22E2B37</color>
+    <color name="spider_pill_bottom">#F223202B</color>
+    <color name="spider_pill_border">#24FFFFFF</color>
+    <color name="spider_text_greeting">#B2ACCD</color>
+    <color name="spider_text_clock">#F2F2F5</color>
+    <color name="spider_text_pill">#C9C8D0</color>
+    <color name="spider_text_title">#FFFFFF</color>
+</resources>

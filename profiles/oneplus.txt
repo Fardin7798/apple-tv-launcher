@@ -1,0 +1,19 @@
+# OnePlus Android TV & Google TV Profile (Q, U, Y Series)
+# Tested on Android TV 9 through Android 14.
+
+# OnePlus / HeyTap Analytics & Partner Content
+com.oneplus.tv.launcher
+com.heytap.olink
+oneplus.smarthome
+com.heytap.tv.assistant.oneplus
+com.heytap.tv.btspeaker
+com.heytap.tv.filebrowser
+
+# Third-Party Preloaded Browser Bloat
+com.tcl.browser
+
+# Google Telemetry & Ads
+com.google.android.feedback
+com.google.android.tvrecommendations
+
+# Stock Google TV Launcher (Replaced by Spider TV Launcher)

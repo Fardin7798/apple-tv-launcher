@@ -1,0 +1,11 @@
+<!-- Sizes shared between layouts and drawables. Corner radii first, then type sizes. -->
+<resources>
+    <dimen name="spider_os_tile_radius">12dp</dimen>
+    <dimen name="spider_os_panel_radius">24dp</dimen>
+    <dimen name="spider_os_panel_padding">12dp</dimen>
+
+    <dimen name="spider_os_text_caption1">12.5sp</dimen>
+    <dimen name="spider_os_text_body">14.5sp</dimen>
+    <dimen name="spider_os_text_callout">15.5sp</dimen>
+    <dimen name="spider_os_text_headline">19sp</dimen>
+</resources>

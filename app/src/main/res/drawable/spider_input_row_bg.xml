@@ -1,0 +1,22 @@
+<!--
+  Background of a picker row. The 4dp top/bottom inset leaves a visible gap between stacked rows
+  without the code having to set margins. White when focused, faint fill otherwise.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <inset android:insetBottom="4dp" android:insetTop="4dp">
+            <shape android:shape="rectangle">
+                <solid android:color="#FFFFFFFF"/>
+                <corners android:radius="@dimen/spider_os_tile_radius"/>
+            </shape>
+        </inset>
+    </item>
+    <item>
+        <inset android:insetBottom="4dp" android:insetTop="4dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/spider_os_fill_tertiary"/>
+                <corners android:radius="@dimen/spider_os_tile_radius"/>
+            </shape>
+        </inset>
+    </item>
+</selector>

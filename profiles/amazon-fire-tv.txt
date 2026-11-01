@@ -1,0 +1,12 @@
+# Amazon Fire TV & Fire Stick Profile
+# Tested on Fire OS 6, 7, 8 (Android 7.1 through 11).
+
+# Fire TV Home Ads, Sponsored Feeds & Metrics
+com.amazon.device.sale.service
+com.amazon.tv.forcedotcom
+com.amazon.visualsearch
+com.amazon.advertising.firetv
+com.amazon.vizzini
+com.amazon.device.crashmanager
+com.amazon.kato
+com.amazon.client.metrics

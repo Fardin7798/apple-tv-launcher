@@ -1,0 +1,39 @@
+<resources>
+    <!-- ===== Identity / system entries ===== -->
+    <string name="spider_app_title">Spider TV Launcher</string>
+    <string name="spider_dream_title">Clock</string>
+    <string name="spider_homekey_title">Home button</string>
+    <string name="spider_homekey_summary">Makes the remote\'s Home button open this launcher.</string>
+    <string name="spider_inputkey_summary">Opens the input switcher when the remote\'s Input button is pressed.</string>
+
+    <!-- ===== Top-right pills ===== -->
+    <string name="spider_sources_label">Inputs</string>
+    <string name="spider_net_wifi">Wi-Fi</string>
+    <string name="spider_net_ethernet">Ethernet</string>
+    <string name="spider_net_offline">Offline</string>
+    <string name="spider_vpn_on">VPN</string>
+    <string name="spider_vpn_off">VPN off</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="spider_settings_label">Settings</string>
+
+    <!-- ===== Source picker sheet ===== -->
+    <string name="spider_choose_source">Inputs</string>
+    <string name="spider_tuner_label">Live TV</string>
+    <string name="spider_source_connected">Connected</string>
+    <string name="spider_source_disconnected">No device</string>
+    <string name="spider_no_sources">No inputs found</string>
+
+    <!-- ===== Greeting, by hour ===== -->
+    <string name="spider_greet_morning">Good morning</string>
+    <string name="spider_greet_afternoon">Good afternoon</string>
+    <string name="spider_greet_evening">Good evening</string>
+    <string name="spider_greet_night">Good night</string>
+
+    <!-- java.text date pattern shared by home and screensaver -->
+    <string name="spider_date_pattern">EEEE  d MMMM</string>
+
+    <!-- ===== Errors and hints ===== -->
+    <string name="spider_cant_open">Can\'t open %1$s</string>
+    <string name="spider_unavailable">Not available on this TV</string>
+    <string name="spider_home_picker_hint">Select your original home to stop using Spider TV Launcher as Home, or Spider TV Launcher to switch back. The original launcher must be enabled and your TV must provide a home picker; use the restore script first if it was disabled.</string>
+</resources>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spider theme Home, converted 1:1 from the FigCraft design (frame "Spider / 0 Home", 1920x1080).
+     Every position is design px / 2 = dp; the art itself lives in @drawable/spider_* vectors. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/spiderRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/spider_bg_night">
+
+    <ImageView
+        android:id="@+id/spider_thread_spotify"
+        android:layout_width="2.5dp"
+        android:layout_height="330.5dp"
+        android:layout_marginStart="392.5dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_thread_spotify"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_spotify_shadow"
+        android:layout_width="138.5dp"
+        android:layout_height="139dp"
+        android:layout_marginStart="324.5dp"
+        android:layout_marginTop="298.5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_spotify_shadow"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_spotify"
+        android:layout_width="81.5dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="353dp"
+        android:layout_marginTop="327dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_spotify"
+        android:focusable="true"
+        android:contentDescription="Spotify" />
+
+    <ImageView
+        android:id="@+id/spider_thread_vlc"
+        android:layout_width="3dp"
+        android:layout_height="264.5dp"
+        android:layout_marginStart="504dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_thread_vlc"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_vlc_shadow"
+        android:layout_width="139dp"
+        android:layout_height="138.5dp"
+        android:layout_marginStart="436dp"
+        android:layout_marginTop="232.5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_vlc_shadow"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_vlc"
+        android:layout_width="82dp"
+        android:layout_height="81.5dp"
+        android:layout_marginStart="464.5dp"
+        android:layout_marginTop="261dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_vlc"
+        android:focusable="true"
+        android:contentDescription="VLC" />
+
+    <ImageView
+        android:id="@+id/spider_tile_youtube_glow"
+        android:layout_width="222.5dp"
+        android:layout_height="222dp"
+        android:layout_marginStart="517dp"
+        android:layout_marginTop="260dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_youtube_glow"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_youtube"
+        android:layout_width="129.5dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="563.5dp"
+        android:layout_marginTop="306dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_youtube"
+        android:focusable="true"
+        android:contentDescription="YouTube" />
+
+    <ImageView
+        android:id="@+id/spider_thread_camera"
+        android:layout_width="3dp"
+        android:layout_height="264.5dp"
+        android:layout_marginStart="749.5dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_thread_camera"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_camera_shadow"
+        android:layout_width="139dp"
+        android:layout_height="138.5dp"
+        android:layout_marginStart="681.5dp"
+        android:layout_marginTop="232.5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_camera_shadow"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_camera"
+        android:layout_width="82dp"
+        android:layout_height="81.5dp"
+        android:layout_marginStart="710dp"
+        android:layout_marginTop="261dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_camera"
+        android:focusable="true"
+        android:contentDescription="Camera" />
+
+    <ImageView
+        android:id="@+id/spider_thread_appstore"
+        android:layout_width="3dp"
+        android:layout_height="330.5dp"
+        android:layout_marginStart="867.5dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_thread_appstore"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_appstore_shadow"
+        android:layout_width="139dp"
+        android:layout_height="139dp"
+        android:layout_marginStart="799.5dp"
+        android:layout_marginTop="298.5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_appstore_shadow"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_tile_appstore"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="828dp"
+        android:layout_marginTop="327dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_tile_appstore"
+        android:focusable="true"
+        android:contentDescription="App Store" />
+
+    <ImageView
+        android:id="@+id/spider_thread_hero"
+        android:layout_width="2.5dp"
+        android:layout_height="90.5dp"
+        android:layout_marginStart="619dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_thread_hero"
+        android:importantForAccessibility="no" />
+
+    <!-- Hero hanging upside down (PNG cut-out; the only bitmap in the theme). -->
+    <ImageView
+        android:id="@+id/spider_hero"
+        android:layout_width="79.5dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="581.5dp"
+        android:layout_marginTop="85dp"
+        android:translationX="0.055dp"
+        android:translationY="0.115dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_hero_hang"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/spider_rope"
+        android:layout_width="36dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="608dp"
+        android:layout_marginTop="260.5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/spider_rope"
+        android:importantForAccessibility="no" />
+
+    <!-- Flip clock + date, top-left (concept v2: cards at 96,96 px; date at 100,376 px). -->
+    <com.spidertv.launcher.FlipClockView
+        android:id="@+id/flipClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp" />
+
+    <TextClock
+        android:id="@+id/spiderDate"
+        style="@style/SpiderText.Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="190dp"
+        android:format12Hour="EEEE  ·  d MMMM"
+        android:format24Hour="EEEE  ·  d MMMM"
+        android:textAllCaps="true"
+        tools:text="SATURDAY  ·  31 OCTOBER" />
+
+    <!-- Greeting sits right above the focused app's name. -->
+    <TextView
+        android:id="@+id/spiderGreeting"
+        style="@style/SpiderText.Greeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="228dp"
+        android:text="@string/spider_greet_evening" />
+
+    <TextView
+        android:id="@+id/spiderHeroName"
+        style="@style/SpiderText.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48.5dp"
+        android:layout_marginTop="253dp"
+        tools:text="YouTube" />
+
+    <!-- Status pill, top-right: Inputs, Wi-Fi, Bluetooth, Settings. Wraps its content, so a hidden
+         Inputs button or a longer network label just resizes it. -->
+    <LinearLayout
+        android:id="@+id/spider_pill"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="47dp"
+        android:background="@drawable/spider_pill_round"
+        android:elevation="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp">
+
+        <TextView
+            android:id="@+id/spiderSourcesPill"
+            style="@style/SpiderText.Pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="@string/spider_sources_label"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/spiderNetworkPill"
+            style="@style/SpiderText.Pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="@string/spider_net_wifi"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/btnBluetooth"
+            style="@style/SpiderText.Pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:text="@string/bluetooth"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/spiderSettingsPill"
+            style="@style/SpiderText.Pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/spider_settings_label"
+            android:focusable="true" />
+    </LinearLayout>
+</FrameLayout>

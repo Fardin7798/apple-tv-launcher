@@ -1,0 +1,10 @@
+<!-- Shared palette (ARGB). Only colours that some drawable or layout actually uses live here. -->
+<resources>
+    <color name="spider_os_label_primary">#FFFFFFFF</color>
+    <color name="spider_os_fill_tertiary">#1FFFFFFF</color>
+    <color name="spider_os_green">#FF32D74B</color>
+
+    <!-- Translucent sheet colour plus its hairline edge. -->
+    <color name="spider_os_material">#D91E1E1E</color>
+    <color name="spider_os_material_stroke">#1AFFFFFF</color>
+</resources>

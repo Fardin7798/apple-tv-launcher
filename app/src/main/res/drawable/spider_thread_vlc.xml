@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Silk thread the vlc tile hangs from -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="3dp" android:height="264.5dp" android:viewportWidth="6" android:viewportHeight="529">
+    <group android:translateX="-1008" android:translateY="0">
+        <path android:pathData="M1010.9,-2.8 L1010.9,526" android:strokeColor="#D9FFFFFF" android:strokeWidth="2.4" android:strokeLineCap="round" />
+    </group>
+</vector>

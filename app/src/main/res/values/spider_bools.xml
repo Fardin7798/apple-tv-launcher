@@ -1,0 +1,4 @@
+<resources>
+    <!-- Flip to true to dock the menu pills on the opposite edge. -->
+    <bool name="spider_menu_rtl">false</bool>
+</resources>

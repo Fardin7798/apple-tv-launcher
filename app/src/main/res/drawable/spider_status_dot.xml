@@ -1,0 +1,2 @@
+<!-- Small green "connected" marker beside an input row's status text. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval"><solid android:color="@color/spider_os_green"/></shape>

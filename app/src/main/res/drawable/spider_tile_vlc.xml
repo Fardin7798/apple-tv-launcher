@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vlc tile: glass card, icon -->
+<vector xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android" android:width="82dp" android:height="81.5dp" android:viewportWidth="164" android:viewportHeight="163">
+    <group android:translateX="-929" android:translateY="-522">
+        <path android:pathData="M958.61,523.26 L1063.26,523.26 C1078.674,523.26 1091.17,535.756 1091.17,551.17 L1091.17,551.17 L1091.17,655.82 C1091.17,671.234 1078.674,683.73 1063.26,683.73 L1063.26,683.73 L958.61,683.73 C943.196,683.73 930.7,671.234 930.7,655.82 L930.7,655.82 L930.7,551.17 C930.7,535.756 943.196,523.26 958.61,523.26 L958.61,523.26 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:type="linear" android:startX="1010.935" android:startY="523.26" android:endX="1010.935" android:endY="683.73">
+                    <item android:offset="0" android:color="#3A3458" />
+                    <item android:offset="1" android:color="#37305A" />
+                </gradient>
+            </aapt:attr>
+        </path>
+        <group>
+            <clip-path android:pathData="M958.61,523.26 L1063.26,523.26 C1078.674,523.26 1091.17,535.756 1091.17,551.17 L1091.17,551.17 L1091.17,655.82 C1091.17,671.234 1078.674,683.73 1063.26,683.73 L1063.26,683.73 L958.61,683.73 C943.196,683.73 930.7,671.234 930.7,655.82 L930.7,655.82 L930.7,551.17 C930.7,535.756 943.196,523.26 958.61,523.26 L958.61,523.26 Z" />
+            <path android:pathData="M1010.9,555.36 L1043,641.96 L978.8,641.96 L1010.9,555.36 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient android:type="linear" android:startX="1010.9" android:startY="555.36" android:endX="1010.9" android:endY="641.96">
+                        <item android:offset="0" android:color="#FFA42E" />
+                        <item android:offset="1" android:color="#EE7A0C" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path android:pathData="M1001.4,581.06 L1020.4,581.06 L1025.2,593.86 L996.7,593.86 L1001.4,581.06 Z" android:fillColor="#FFFFFF" />
+            <path android:pathData="M990.7,609.96 L1031.1,609.96 L1036.5,624.36 L985.4,624.36 L990.7,609.96 Z" android:fillColor="#FFFFFF" />
+            <path android:pathData="M970.818,638.798 L1051.053,638.798 C1053.711,638.798 1055.867,640.954 1055.867,643.613 L1055.867,643.613 L1055.867,648.427 C1055.867,651.085 1053.711,653.241 1051.053,653.241 L1051.053,653.241 L970.818,653.241 C968.159,653.241 966.003,651.085 966.003,648.427 L966.003,648.427 L966.003,643.613 C966.003,640.954 968.159,638.798 970.818,638.798 L970.818,638.798 Z" android:fillColor="#F28A12" />
+        </group>
+        <path android:pathData="M958.61,523.26 L1063.26,523.26 C1078.674,523.26 1091.17,535.756 1091.17,551.17 L1091.17,551.17 L1091.17,655.82 C1091.17,671.234 1078.674,683.73 1063.26,683.73 L1063.26,683.73 L958.61,683.73 C943.196,683.73 930.7,671.234 930.7,655.82 L930.7,655.82 L930.7,551.17 C930.7,535.756 943.196,523.26 958.61,523.26 L958.61,523.26 Z M958.61,524.76 L1063.26,524.76 C1077.846,524.76 1089.67,536.584 1089.67,551.17 L1089.67,551.17 L1089.67,655.82 C1089.67,670.406 1077.846,682.23 1063.26,682.23 L1063.26,682.23 L958.61,682.23 C944.024,682.23 932.2,670.406 932.2,655.82 L932.2,655.82 L932.2,551.17 C932.2,536.584 944.024,524.76 958.61,524.76 L958.61,524.76 Z" android:fillColor="#26FFFFFF" android:fillType="evenOdd" />
+    </group>
+</vector>

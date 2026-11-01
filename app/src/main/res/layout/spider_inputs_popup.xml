@@ -1,0 +1,18 @@
+<!-- Source picker sheet: a heading, then @id/spiderRows which SpiderHomeActivity fills with spider_input_row rows. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spiderPanel" android:orientation="vertical"
+    android:layout_height="wrap_content" android:layout_width="match_parent"
+    android:background="@drawable/spider_glass_panel" android:elevation="12dp"
+    android:padding="@dimen/spider_os_panel_padding">
+
+    <!-- Heading is decorative for TalkBack; each row announces itself. -->
+    <TextView android:text="@string/spider_choose_source" android:importantForAccessibility="no"
+        android:layout_height="wrap_content" android:layout_width="match_parent"
+        android:paddingTop="4dp" android:paddingBottom="6dp" android:paddingEnd="6dp" android:paddingStart="6dp"
+        android:fontFamily="sans-serif-black" android:textSize="@dimen/spider_os_text_headline"
+        android:textColor="@color/spider_os_label_primary"
+        android:ellipsize="end" android:singleLine="true"/>
+
+    <LinearLayout android:id="@+id/spiderRows" android:orientation="vertical"
+        android:layout_height="wrap_content" android:layout_width="match_parent"/>
+</LinearLayout>

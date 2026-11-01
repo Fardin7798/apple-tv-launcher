@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One recent-app card. Size animates 240x135dp <-> 320x180dp in RecentAppsActivity. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="4dp"
+    android:clipChildren="false"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/cardHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true">
+
+        <!-- Focus: white outline on the card edge + soft outer glow (drawn in code) -->
+        <View
+            android:id="@+id/ring"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <FrameLayout
+            android:id="@+id/spiderCard"
+            android:layout_width="240dp"
+            android:layout_height="135dp"
+            android:layout_margin="10dp"
+            android:elevation="12dp">
+
+            <!-- Brand gradient (from app icon colour) -->
+            <View
+                android:id="@+id/cardBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Full-bleed 16:9 widescreen banner for TV apps -->
+            <ImageView
+                android:id="@+id/appBanner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="@null"
+                android:visibility="gone" />
+
+            <!-- Centered icon for apps without a TV banner -->
+            <ImageView
+                android:id="@+id/appIcon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="14dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@null"
+                android:visibility="gone" />
+
+            <!-- Bottom shade for text -->
+            <View
+                android:id="@+id/shade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/line1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="26dp"
+                android:fontFamily="@font/spider_inter_bold"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="Used 42 min today"
+                android:textColor="#FFFFFF"
+                android:textSize="10.5sp" />
+
+            <TextView
+                android:id="@+id/line2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="27dp"
+                android:alpha="0.85"
+                android:fontFamily="@font/spider_inter_medium"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="8.5sp" />
+
+            <!-- Progress: track + fill (weights set in code) -->
+            <LinearLayout
+                android:id="@+id/progTrack"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/progFill"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5" />
+
+                <View
+                    android:id="@+id/progRest"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5" />
+            </LinearLayout>
+        </FrameLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="2dp"
+        android:alpha="0.85"
+        android:fontFamily="@font/spider_inter_medium"
+        android:includeFontPadding="false"
+        android:text="YouTube"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtWhen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/spider_inter_medium"
+        android:includeFontPadding="false"
+        android:text="8 min ago"
+        android:textColor="#9692B6"
+        android:textSize="9.5sp" />
+</LinearLayout>

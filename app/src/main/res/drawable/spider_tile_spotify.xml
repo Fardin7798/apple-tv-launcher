@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- spotify tile: glass card, icon -->
+<vector xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android" android:width="81.5dp" android:height="82dp" android:viewportWidth="163" android:viewportHeight="164">
+    <group android:translateX="-706" android:translateY="-654">
+        <path android:pathData="M735.35,655.81 L840,655.81 C855.414,655.81 867.91,668.306 867.91,683.72 L867.91,683.72 L867.91,788.37 C867.91,803.784 855.414,816.28 840,816.28 L840,816.28 L735.35,816.28 C719.936,816.28 707.44,803.784 707.44,788.37 L707.44,788.37 L707.44,683.72 C707.44,668.306 719.936,655.81 735.35,655.81 L735.35,655.81 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:type="linear" android:startX="787.675" android:startY="655.81" android:endX="787.675" android:endY="816.28">
+                    <item android:offset="0" android:color="#221A1B" />
+                    <item android:offset="1" android:color="#151012" />
+                </gradient>
+            </aapt:attr>
+        </path>
+        <group>
+            <clip-path android:pathData="M735.35,655.81 L840,655.81 C855.414,655.81 867.91,668.306 867.91,683.72 L867.91,683.72 L867.91,788.37 C867.91,803.784 855.414,816.28 840,816.28 L840,816.28 L735.35,816.28 C719.936,816.28 707.44,803.784 707.44,788.37 L707.44,788.37 L707.44,683.72 C707.44,668.306 719.936,655.81 735.35,655.81 L735.35,655.81 Z" />
+            <path android:pathData="M842.095,736.045 C842.095,759.621 826.914,780.516 804.492,787.801 C782.069,795.087 757.506,787.106 743.648,768.032 C729.791,748.959 729.791,723.131 743.648,704.058 C757.506,684.984 782.069,677.003 804.492,684.289 C826.914,691.574 842.095,712.469 842.095,736.045" android:fillColor="#1ED760" />
+            <path android:pathData="M753.94,717.51 C776.407,708.11 798.907,709.577 821.44,721.91" android:strokeColor="#121212" android:strokeWidth="9.251" android:strokeLineCap="round" />
+            <path android:pathData="M759.34,738.21 C778.207,728.81 797.073,730.277 815.94,742.61" android:strokeColor="#121212" android:strokeWidth="7.619" android:strokeLineCap="round" />
+            <path android:pathData="M764.84,756.71 C780.04,747.31 795.273,748.777 810.54,761.11" android:strokeColor="#121212" android:strokeWidth="6.53" android:strokeLineCap="round" />
+        </group>
+        <path android:pathData="M735.35,655.81 L840,655.81 C855.414,655.81 867.91,668.306 867.91,683.72 L867.91,683.72 L867.91,788.37 C867.91,803.784 855.414,816.28 840,816.28 L840,816.28 L735.35,816.28 C719.936,816.28 707.44,803.784 707.44,788.37 L707.44,788.37 L707.44,683.72 C707.44,668.306 719.936,655.81 735.35,655.81 L735.35,655.81 Z M735.35,657.31 L840,657.31 C854.586,657.31 866.41,669.134 866.41,683.72 L866.41,683.72 L866.41,788.37 C866.41,802.956 854.586,814.78 840,814.78 L840,814.78 L735.35,814.78 C720.764,814.78 708.94,802.956 708.94,788.37 L708.94,788.37 L708.94,683.72 C708.94,669.134 720.764,657.31 735.35,657.31 L735.35,657.31 Z" android:fillColor="#26FFFFFF" android:fillType="evenOdd" />
+    </group>
+</vector>

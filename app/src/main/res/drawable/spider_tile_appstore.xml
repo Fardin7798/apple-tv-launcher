@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- appstore tile: glass card, icon -->
+<vector xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android" android:width="82dp" android:height="82dp" android:viewportWidth="164" android:viewportHeight="164">
+    <group android:translateX="-1656" android:translateY="-654">
+        <path android:pathData="M1685.58,655.81 L1790.23,655.81 C1805.644,655.81 1818.14,668.306 1818.14,683.72 L1818.14,683.72 L1818.14,788.37 C1818.14,803.784 1805.644,816.28 1790.23,816.28 L1790.23,816.28 L1685.58,816.28 C1670.166,816.28 1657.67,803.784 1657.67,788.37 L1657.67,788.37 L1657.67,683.72 C1657.67,668.306 1670.166,655.81 1685.58,655.81 L1685.58,655.81 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:type="linear" android:startX="1737.905" android:startY="655.81" android:endX="1737.905" android:endY="816.28">
+                    <item android:offset="0" android:color="#3A3458" />
+                    <item android:offset="1" android:color="#37305A" />
+                </gradient>
+            </aapt:attr>
+        </path>
+        <group>
+            <clip-path android:pathData="M1685.58,655.81 L1790.23,655.81 C1805.644,655.81 1818.14,668.306 1818.14,683.72 L1818.14,683.72 L1818.14,788.37 C1818.14,803.784 1805.644,816.28 1790.23,816.28 L1790.23,816.28 L1685.58,816.28 C1670.166,816.28 1657.67,803.784 1657.67,788.37 L1657.67,788.37 L1657.67,683.72 C1657.67,668.306 1670.166,655.81 1685.58,655.81 L1685.58,655.81 Z" />
+            <path android:pathData="M1705.554,678.276 L1770.256,678.276 C1784.294,678.276 1795.674,689.656 1795.674,703.694 L1795.674,703.694 L1795.674,768.396 C1795.674,782.434 1784.294,793.814 1770.256,793.814 L1770.256,793.814 L1705.554,793.814 C1691.516,793.814 1680.136,782.434 1680.136,768.396 L1680.136,768.396 L1680.136,703.694 C1680.136,689.656 1691.516,678.276 1705.554,678.276 L1705.554,678.276 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient android:type="linear" android:startX="1737.905" android:startY="678.276" android:endX="1737.905" android:endY="793.814">
+                        <item android:offset="0" android:color="#1EC8FF" />
+                        <item android:offset="1" android:color="#1F6FF0" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <group>
+                <clip-path android:pathData="M1705.554,678.276 L1770.256,678.276 C1784.294,678.276 1795.674,689.656 1795.674,703.694 L1795.674,703.694 L1795.674,768.396 C1795.674,782.434 1784.294,793.814 1770.256,793.814 L1770.256,793.814 L1705.554,793.814 C1691.516,793.814 1680.136,782.434 1680.136,768.396 L1680.136,768.396 L1680.136,703.694 C1680.136,689.656 1691.516,678.276 1705.554,678.276 L1705.554,678.276 Z" />
+                <path android:pathData="M1715.936,763.776 L1743.136,711.776" android:strokeColor="#FFFFFF" android:strokeWidth="9.821" android:strokeLineCap="round" />
+                <path android:pathData="M1732.736,711.776 L1759.836,763.776" android:strokeColor="#FFFFFF" android:strokeWidth="9.821" android:strokeLineCap="round" />
+                <path android:pathData="M1707.836,747.576 L1767.936,747.576" android:strokeColor="#FFFFFF" android:strokeWidth="9.821" android:strokeLineCap="round" />
+                <path android:pathData="M1707.836,763.776 L1712.536,755.676" android:strokeColor="#FFFFFF" android:strokeWidth="9.821" android:strokeLineCap="round" />
+            </group>
+        </group>
+        <path android:pathData="M1685.58,655.81 L1790.23,655.81 C1805.644,655.81 1818.14,668.306 1818.14,683.72 L1818.14,683.72 L1818.14,788.37 C1818.14,803.784 1805.644,816.28 1790.23,816.28 L1790.23,816.28 L1685.58,816.28 C1670.166,816.28 1657.67,803.784 1657.67,788.37 L1657.67,788.37 L1657.67,683.72 C1657.67,668.306 1670.166,655.81 1685.58,655.81 L1685.58,655.81 Z M1685.58,657.31 L1790.23,657.31 C1804.816,657.31 1816.64,669.134 1816.64,683.72 L1816.64,683.72 L1816.64,788.37 C1816.64,802.956 1804.816,814.78 1790.23,814.78 L1790.23,814.78 L1685.58,814.78 C1670.994,814.78 1659.17,802.956 1659.17,788.37 L1659.17,788.37 L1659.17,683.72 C1659.17,669.134 1670.994,657.31 1685.58,657.31 L1685.58,657.31 Z" android:fillColor="#26FFFFFF" android:fillType="evenOdd" />
+    </group>
+</vector>

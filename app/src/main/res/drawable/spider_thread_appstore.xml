@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Silk thread the appstore tile hangs from -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="3dp" android:height="330.5dp" android:viewportWidth="6" android:viewportHeight="661">
+    <group android:translateX="-1735" android:translateY="0">
+        <path android:pathData="M1737.9,-2.8 L1737.9,658.6" android:strokeColor="#D9FFFFFF" android:strokeWidth="2.4" android:strokeLineCap="round" />
+    </group>
+</vector>

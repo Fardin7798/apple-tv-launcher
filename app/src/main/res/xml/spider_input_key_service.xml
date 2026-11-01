@@ -1,0 +1,5 @@
+<!-- SpiderInputKeyService: same key-filter setup as the Home one, different description. -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/spider_inputkey_summary"
+    android:accessibilityFlags="flagRequestFilterKeyEvents" android:canRequestFilterKeyEvents="true"
+    android:accessibilityEventTypes="typeWindowStateChanged" android:accessibilityFeedbackType="feedbackGeneric"/>

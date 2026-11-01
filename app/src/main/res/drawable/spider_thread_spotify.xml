@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Silk thread the spotify tile hangs from -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="2.5dp" android:height="330.5dp" android:viewportWidth="5" android:viewportHeight="661">
+    <group android:translateX="-785" android:translateY="0">
+        <path android:pathData="M787.7,-2.8 L787.7,658.6" android:strokeColor="#D9FFFFFF" android:strokeWidth="2.4" android:strokeLineCap="round" />
+    </group>
+</vector>

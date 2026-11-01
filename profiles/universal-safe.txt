@@ -1,0 +1,13 @@
+# Universal Safe Profile (Works on ANY Android TV / Google TV)
+# Disables generic ad channels, recommendation feeds, and crash feedback without touching OEM hardware drivers.
+
+# Google TV & Android TV Sponsored Recommendations & Ad Rows
+com.google.android.tvrecommendations
+com.google.android.leanbacklauncher.recommendations
+
+# Diagnostic & Feedback Telemetry (Background battery / network drain)
+com.google.android.feedback
+com.google.android.tv.bugreportsender
+
+# Partner Auto-Install Bundlers
+android.autoinstalls.config.google.nexus

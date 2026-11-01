@@ -1,0 +1,2 @@
+<!-- Per-app language list (API 33+). English only. -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android"><locale android:name="en"/></locale-config>

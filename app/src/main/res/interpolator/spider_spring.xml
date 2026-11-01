@@ -1,0 +1,4 @@
+<!-- Quick start with a slight overshoot past 1.0; used for focus-gain scaling. -->
+<pathInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:controlX1="0.32" android:controlY1="1.28"
+    android:controlX2="0.42" android:controlY2="1.0"/>

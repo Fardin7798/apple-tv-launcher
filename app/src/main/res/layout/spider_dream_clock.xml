@@ -1,0 +1,39 @@
+<!--
+  SpiderClockDream screensaver. The service moves @id/spiderDreamBlock around the screen; @id/spiderDreamWash is
+  a full-bleed layer the service may tint. Big time + AM/PM marker on one baseline, date underneath.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/spider_dream_backdrop"
+    android:layout_height="match_parent" android:layout_width="match_parent">
+
+    <View android:id="@+id/spiderDreamWash"
+        android:layout_height="match_parent" android:layout_width="match_parent"/>
+
+    <LinearLayout android:id="@+id/spiderDreamBlock" android:orientation="vertical"
+        android:layout_height="wrap_content" android:layout_width="wrap_content">
+
+        <!-- time row -->
+        <LinearLayout android:orientation="horizontal" android:baselineAligned="true"
+            android:layout_height="wrap_content" android:layout_width="wrap_content">
+
+            <TextClock android:format24Hour="HH:mm" android:format12Hour="h:mm"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:fontFamily="sans-serif-medium" android:textSize="75sp" android:textColor="#F2FFFFFF"
+                android:includeFontPadding="false" android:letterSpacing="-0.03"
+                android:shadowRadius="10" android:shadowDy="2" android:shadowColor="#73000000"/>
+
+            <TextClock android:format24Hour="" android:format12Hour="a"
+                android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginStart="8dp"
+                android:fontFamily="sans-serif-medium" android:textSize="@dimen/spider_os_text_callout"
+                android:textColor="#BFFFFFFF"
+                android:shadowRadius="6" android:shadowDy="1" android:shadowColor="#73000000"/>
+        </LinearLayout>
+
+        <!-- date row -->
+        <TextClock android:format24Hour="@string/spider_date_pattern" android:format12Hour="@string/spider_date_pattern"
+            android:layout_height="wrap_content" android:layout_width="wrap_content"
+            android:layout_marginTop="4dp" android:layout_marginStart="3dp"
+            android:textColor="#CCFFFFFF" android:fontFamily="sans-serif-medium" android:textSize="@dimen/spider_os_text_callout"
+            android:shadowRadius="6" android:shadowDy="1" android:shadowColor="#73000000"/>
+    </LinearLayout>
+</FrameLayout>

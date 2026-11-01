@@ -1,0 +1,113 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ===== Hardware: nothing is mandatory, so the APK installs on any TV box or phone ===== -->
+    <uses-feature android:required="false" android:name="android.software.leanback"/>
+    <uses-feature android:required="false" android:name="android.hardware.touchscreen"/>
+    <uses-feature android:required="false" android:name="android.hardware.wifi"/>
+    <uses-feature android:required="false" android:name="android.hardware.location.gps"/>
+
+    <!-- ===== Permissions ===== -->
+    <!-- network pill: link type and Wi-Fi state -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- SSID lookup needs location on API 29+. Granted over adb by the install script and never
+         requested in a dialog, hence the lint suppression. -->
+    <uses-permission tools:ignore="CoarseFineLocation" android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- recents screen: usage stats (adb-granted) and stopping background apps -->
+    <uses-permission tools:ignore="ProtectedPermissions" android:name="android.permission.PACKAGE_USAGE_STATS"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+
+    <!-- ===== Package visibility (API 30+) ===== -->
+    <queries>
+        <!-- every TV app, to build the tile grid -->
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+        </intent>
+        <!-- apps that publish a dock card -->
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="com.spidertv.launcher.category.DOCK_CARD"/>
+        </intent>
+        <!-- settings apps the pills may open: Xiaomi's, then the stock TV one -->
+        <package android:name="com.xiaomi.mitv.settings"/>
+        <package android:name="com.android.tv.settings"/>
+        <!-- Bluetooth accessory pairing screen -->
+        <intent>
+            <action android:name="com.google.android.intent.action.CONNECT_INPUT"/>
+        </intent>
+    </queries>
+
+    <application
+        android:theme="@style/Theme.SpiderTvLauncher" android:label="@string/spider_app_title"
+        android:icon="@mipmap/spider_launcher_icon" android:banner="@drawable/spider_tv_banner"
+        android:localeConfig="@xml/spider_locales" android:allowBackup="false">
+
+        <!-- Home screen. Registered both as a HOME candidate and as a normal leanback app. -->
+        <activity android:name=".SpiderHomeActivity" android:exported="true"
+            android:launchMode="singleTask" android:clearTaskOnLaunch="true"
+            android:stateNotNeeded="true" android:excludeFromRecents="true" android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.HOME"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Invisible trampoline that opens the system "default home" chooser. -->
+        <activity android:name=".SpiderSettingsActivity" android:exported="false"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:taskAffinity="" android:excludeFromRecents="true"/>
+
+        <!-- Recent-apps overlay; also answers Xiaomi's hot-key intent. -->
+        <activity android:name=".RecentAppsActivity" android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTop" android:taskAffinity=""
+            android:noHistory="true" android:excludeFromRecents="true" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="com.mitv.tvhome.action.HotKeyDealIntent"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Xiaomi global-button broadcasts. -->
+        <receiver android:name=".MiKeyReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.GLOBAL_BUTTON"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Accessibility key filter that maps the remote's apps key to this launcher (off until
+             the user or tools/apply.sh enables it). -->
+        <service android:name=".SpiderHomeKeyService" android:label="@string/spider_homekey_title"
+            android:exported="true" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data android:resource="@xml/spider_home_key_service" android:name="android.accessibilityservice"/>
+        </service>
+
+        <!-- Clock screensaver (DreamService). -->
+        <service android:name=".SpiderClockDream" android:label="@string/spider_dream_title"
+            android:exported="true" android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+
+        <!-- Accessibility key filter for the remote's Input key: opens the source picker. -->
+        <service android:name=".SpiderInputKeyService" android:label="@string/spider_app_title"
+            android:exported="false" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data android:resource="@xml/spider_input_key_service" android:name="android.accessibilityservice"/>
+        </service>
+    </application>
+</manifest>

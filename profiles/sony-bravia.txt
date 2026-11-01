@@ -1,0 +1,25 @@
+# Sony BRAVIA Android TV / Google TV Profile (XBR, KD, A80, X90 Series)
+# Tested on Android TV 9 through Android 14.
+
+# Samba TV ACR Viewing Tracker
+tv.samba.ssm
+
+# Sony Content, Promos, and Ad Channels
+com.sony.dtv.sonyselect
+com.sony.dtv.promos
+com.sony.dtv.discovery
+com.sony.dtv.bivlinfo
+com.sony.dtv.tvlaunchercustomizer
+com.google.android.tvrecommendations
+android.autoinstalls.config.sony.bravia
+
+# Retail Store Demo Packages
+com.sony.dtv.demomode
+com.sony.dtv.demosupport
+com.sony.dtv.multiscreendemo
+
+# Telemetry
+com.google.android.feedback
+com.google.android.tv.bugreportsender
+
+# Stock Launcher (Replaced by Spider TV Launcher)

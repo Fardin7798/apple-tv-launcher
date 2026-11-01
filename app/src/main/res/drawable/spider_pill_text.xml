@@ -1,0 +1,5 @@
+<!-- Foreground tint: dark on a focused (white) background, white elsewhere. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#FF000000" android:state_focused="true"/>
+    <item android:color="#FFFFFFFF"/>
+</selector>

@@ -1,0 +1,45 @@
+<!--
+  Build-time knobs read once by SpiderPrefs.java. Every one can be left alone; an empty string means
+  "feature off".
+-->
+<resources>
+
+    <!-- ===== Which apps show where ===== -->
+    <!-- Bottom dock, left to right; packages that are not installed are simply skipped. -->
+    <string-array name="spider_dock_packages">
+        <item>org.smarttube.stable</item> <item>com.spotify.tv.android</item>
+        <item>org.videolan.vlc</item> <item>app.netmirror.newtv</item>
+    </string-array>
+    <!-- Never given a tile. -->
+    <string-array name="spider_hidden_packages">
+        <item>com.android.tv</item> <item>com.mitv.gallery</item>
+    </string-array>
+
+    <!-- ===== Source picker fallbacks ===== -->
+    <!-- Tuner package added as the last row of the picker. -->
+    <string translatable="false" name="spider_tuner_package">com.android.tv</string>
+    <!-- Intent action used to start that package when it has no leanback launcher activity. -->
+    <string translatable="false" name="spider_tuner_action"></string>
+    <!-- Service component + action started when the TV exposes no TvInputManager list. -->
+    <string translatable="false" name="spider_panel_service"></string>
+    <string translatable="false" name="spider_panel_action"></string>
+    <!-- Action broadcast with the channel URI for HDMI/AV rows instead of ACTION_VIEW. -->
+    <string translatable="false" name="spider_source_intent_action"></string>
+
+    <!-- ===== Remote keys mapped to the Settings action ===== -->
+    <!-- Two lists: raw scancodes, then Android keycodes. -->
+    <integer-array name="spider_settings_scancodes"></integer-array>
+    <integer-array name="spider_settings_keycodes"></integer-array>
+    <!-- true: such a key opens the system quick panel rather than full Settings. -->
+    <bool name="spider_settings_as_panel">false</bool>
+
+    <!-- ===== Network pill ===== -->
+    <!-- Package launched from the pill; also turns on the "VPN off" badge. -->
+    <string translatable="false" name="spider_vpn_package"></string>
+
+    <!-- ===== Motion ===== -->
+    <bool name="spider_motion_enabled">true</bool>
+    <!-- Gentler focus springs and fades for slow GPUs. -->
+    <bool name="spider_motion_reduced">false</bool>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spider theme sizes: design px / 2 (1920x1080 TV = 960x540dp). -->
+<resources>
+    <dimen name="spider_text_greeting">18dp</dimen>
+    <dimen name="spider_text_clock">16.045dp</dimen>
+    <dimen name="spider_text_pill">16dp</dimen>
+    <dimen name="spider_text_title">57.21dp</dimen>
+    <dimen name="spider_tile">80.235dp</dimen>
+    <dimen name="spider_tile_focused">123.49dp</dimen>
+    <dimen name="spider_tile_radius">13.955dp</dimen>
+    <dimen name="spider_tile_radius_focused">16.745dp</dimen>
+</resources>

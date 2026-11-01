@@ -1,0 +1,38 @@
+# Xiaomi / Redmi Android TV Profile (Mi TV 4A/4C, 5X, X-Series, Mi Box S, TV Stick, A Pro)
+# Tested on Android TV 9 (Pie) through Android 14.
+
+# PatchWall, Content Rows, Sponsored Rows & Lockscreen Ads
+com.mitv.tvhome.atv
+com.xm.webcontent
+com.xiaomi.floatingframe
+com.glance.tv
+com.mitv.tvhome.mitvplus
+co.sensara.tv.mitv
+android.autoinstalls.config.xioami.dangal
+
+# Xiaomi Telemetry & Background Trackers
+com.miui.tv.analytics
+com.xiaomi.statistic
+com.google.android.feedback
+com.google.android.tv.bugreportsender
+
+# Xiaomi Background Services & Cleaners
+com.xiaomi.mitv.tvmanager
+com.xiaomi.mitv.handbook
+com.xiaomi.mitv.updateservice
+com.xiaomo.tv.milegal
+
+# Preloaded Bloatware Apps
+com.xiaomi.mimusic2
+com.google.android.play.games
+com.google.android.videos
+com.mitv.gallery
+com.fancode.tv
+com.suntv.sunnxt.mitv
+com.eros.mitv
+com.discoveryplus.mitv
+com.ddnational.prasarbharati
+net.aljazeera.english
+
+# Stock Ads-Heavy Launcher
+com.google.android.tvrecommendations

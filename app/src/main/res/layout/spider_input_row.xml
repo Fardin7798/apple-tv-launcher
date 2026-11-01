@@ -1,0 +1,30 @@
+<!--
+  One row of the source picker, inflated per input by SpiderHomeActivity: glyph, name, status dot, status text.
+  Children copy the row's focus state so the text and glyph turn dark on the white focused row.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:gravity="center_vertical"
+    android:layout_height="56dp" android:layout_width="match_parent"
+    android:paddingEnd="12dp" android:paddingStart="12dp"
+    android:focusable="true" android:clickable="true"
+    android:background="@drawable/spider_input_row_bg" android:stateListAnimator="@animator/spider_focus_control">
+
+    <ImageView android:id="@+id/spiderRowGlyph" android:layout_height="22dp" android:layout_width="22dp"
+        android:duplicateParentState="true" android:tint="@drawable/spider_pill_text"
+        android:contentDescription="@null"/>
+
+    <TextView android:id="@+id/spiderRowTitle" android:layout_weight="1"
+        android:layout_height="wrap_content" android:layout_width="0dp"
+        android:layout_marginEnd="10dp" android:layout_marginStart="10dp"
+        android:duplicateParentState="true" android:textColor="@drawable/spider_pill_text"
+        android:fontFamily="sans-serif-medium" android:textSize="@dimen/spider_os_text_body"
+        android:ellipsize="end" android:singleLine="true"/>
+
+    <View android:id="@+id/spiderStatusDot" android:layout_height="7dp" android:layout_width="7dp"
+        android:layout_marginEnd="6dp" android:background="@drawable/spider_status_dot"/>
+
+    <TextView android:id="@+id/spiderRowStatus"
+        android:layout_height="wrap_content" android:layout_width="wrap_content"
+        android:duplicateParentState="true" android:textColor="@drawable/spider_pill_text_dim"
+        android:fontFamily="sans-serif-medium" android:textSize="@dimen/spider_os_text_caption1"/>
+</LinearLayout>

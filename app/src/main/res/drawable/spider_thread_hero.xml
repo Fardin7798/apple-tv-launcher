@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Silk thread the hero hangs from -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="2.5dp" android:height="90.5dp" android:viewportWidth="5" android:viewportHeight="181">
+    <group android:translateX="-1238" android:translateY="0">
+        <path android:pathData="M1240.5,-2.8 L1240.5,178.6" android:strokeColor="#D9FFFFFF" android:strokeWidth="2.4" android:strokeLineCap="round" />
+    </group>
+</vector>

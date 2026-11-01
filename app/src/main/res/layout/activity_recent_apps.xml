@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spider Recents · 1920x1080 TV = 960x540dp (xhdpi). Night bg + dark scrim; app-colour tint/vignette applied in RecentAppsActivity. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spiderRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/spider_bg_night"
+    android:clipChildren="false">
+
+    <!-- Dark scrim so cards read on the night background -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5A04030E" />
+
+    <!-- Subtle radial tint (colour follows the focused app) -->
+    <View
+        android:id="@+id/glowBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Bottom vignette -->
+    <View
+        android:id="@+id/vignette"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="42dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:fontFamily="@font/spider_oswald_medium"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.45"
+            android:text="RECENTS"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-2dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/spider_oswald_bold"
+            android:includeFontPadding="false"
+            android:text="Recently used"
+            android:textColor="#FFFFFF"
+            android:textSize="42sp" />
+
+        <TextView
+            android:id="@+id/txtSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/spider_inter_medium"
+            android:includeFontPadding="false"
+            android:text="5 apps open  ·  1.2 GB memory free"
+            android:textColor="#C8C4E2"
+            android:textSize="13.5sp" />
+    </LinearLayout>
+
+    <!-- Top-right pills -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnClearAll"
+            style="@style/RecentsPill"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginEnd="10dp"
+            android:text="Clear all" />
+
+        <TextView
+            android:id="@+id/spiderSettingsPill"
+            style="@style/RecentsPill"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="Settings" />
+    </LinearLayout>
+
+    <!-- Card row: focused card 320x180dp, others 240x135dp, bottom-aligned -->
+    <HorizontalScrollView
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginTop="168dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/cardRow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp" />
+    </HorizontalScrollView>
+
+    <!-- Actions for the selected app -->
+    <LinearLayout
+        android:id="@+id/actionsRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="434dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnOpen"
+            style="@style/RecentsAction"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:text="Open" />
+
+        <TextView
+            android:id="@+id/btnClose"
+            style="@style/RecentsAction"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:text="Close app" />
+
+        <TextView
+            android:id="@+id/btnInfo"
+            style="@style/RecentsAction"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="App info" />
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="59dp"
+        android:alpha="0.12"
+        android:background="#FFFFFF" />
+
+    <!-- Remote hint bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="19dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout android:id="@+id/hintBrowse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:id="@+id/key1" style="@style/RecentsKey" android:text="◀ ▶" />
+            <TextView style="@style/RecentsHint" android:text="Browse" />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/hintOpen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:id="@+id/key2" style="@style/RecentsKey" android:text="OK" />
+            <TextView style="@style/RecentsHint" android:text="Open" />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/hintClose" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:id="@+id/key3" style="@style/RecentsKey" android:text="▼" />
+            <TextView style="@style/RecentsHint" android:text="Close app" />
+        </LinearLayout>
+        <TextView android:id="@+id/key4" style="@style/RecentsKey" android:text="BACK" />
+        <TextView style="@style/RecentsHint" android:text="Home" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spider_oswald_medium"
+            android:includeFontPadding="false"
+            android:format12Hour="h:mm a  ·  EEE d MMM"
+            android:format24Hour="HH:mm  ·  EEE d MMM"
+            android:textColor="#B9B4D7"
+            android:textSize="13sp" />
+    </LinearLayout>
+</FrameLayout>

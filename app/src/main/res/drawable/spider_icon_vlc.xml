@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vlc icon art (no card, rim or splat), from the FigCraft tile -->
+<vector xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android" android:width="82dp" android:height="81.5dp" android:viewportWidth="164" android:viewportHeight="163">
+    <group android:translateX="-929" android:translateY="-522">
+        <group>
+            <clip-path android:pathData="M958.61,523.26 L1063.26,523.26 C1078.674,523.26 1091.17,535.756 1091.17,551.17 L1091.17,551.17 L1091.17,655.82 C1091.17,671.234 1078.674,683.73 1063.26,683.73 L1063.26,683.73 L958.61,683.73 C943.196,683.73 930.7,671.234 930.7,655.82 L930.7,655.82 L930.7,551.17 C930.7,535.756 943.196,523.26 958.61,523.26 L958.61,523.26 Z" />
+            <path android:pathData="M1010.9,555.36 L1043,641.96 L978.8,641.96 L1010.9,555.36 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient android:type="linear" android:startX="1010.9" android:startY="555.36" android:endX="1010.9" android:endY="641.96">
+                        <item android:offset="0" android:color="#FFA42E" />
+                        <item android:offset="1" android:color="#EE7A0C" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path android:pathData="M1001.4,581.06 L1020.4,581.06 L1025.2,593.86 L996.7,593.86 L1001.4,581.06 Z" android:fillColor="#FFFFFF" />
+            <path android:pathData="M990.7,609.96 L1031.1,609.96 L1036.5,624.36 L985.4,624.36 L990.7,609.96 Z" android:fillColor="#FFFFFF" />
+            <path android:pathData="M970.818,638.798 L1051.053,638.798 C1053.711,638.798 1055.867,640.954 1055.867,643.613 L1055.867,643.613 L1055.867,648.427 C1055.867,651.085 1053.711,653.241 1051.053,653.241 L1051.053,653.241 L970.818,653.241 C968.159,653.241 966.003,651.085 966.003,648.427 L966.003,648.427 L966.003,643.613 C966.003,640.954 968.159,638.798 970.818,638.798 L970.818,638.798 Z" android:fillColor="#F28A12" />
+        </group>
+        
+    </group>
+</vector>

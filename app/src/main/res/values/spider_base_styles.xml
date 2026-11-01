@@ -1,0 +1,8 @@
+<resources>
+    <!-- App-wide window theme: no action bar, black behind every activity, no window transitions. -->
+    <style parent="android:Theme.Material.NoActionBar.Fullscreen" name="Theme.SpiderTvLauncher">
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+</resources>

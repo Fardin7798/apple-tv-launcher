@@ -1,0 +1,5 @@
+<!-- SpiderHomeKeyService: listens for key events only; no window content is read. -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/spider_homekey_summary"
+    android:accessibilityFlags="flagRequestFilterKeyEvents" android:canRequestFilterKeyEvents="true"
+    android:accessibilityEventTypes="typeWindowStateChanged" android:accessibilityFeedbackType="feedbackGeneric"/>

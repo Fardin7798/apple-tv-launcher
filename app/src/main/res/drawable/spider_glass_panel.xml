@@ -1,0 +1,10 @@
+<!-- Rounded translucent sheet with a hairline edge, used behind the source picker. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/spider_os_material"/>
+            <stroke android:color="@color/spider_os_material_stroke" android:width="0.5dp"/>
+            <corners android:radius="@dimen/spider_os_panel_radius"/>
+        </shape>
+    </item>
+</layer-list>

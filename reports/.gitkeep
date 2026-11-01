@@ -1,0 +1,3 @@
+# Audit reports are generated here by tools/audit.sh
+# Each run creates: report_<timestamp>.md, plan_<timestamp>.txt, apply_<timestamp>.sh
+# Do NOT commit report files — they contain device-specific data.

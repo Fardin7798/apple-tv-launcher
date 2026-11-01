@@ -1,0 +1,5 @@
+<!-- Same as spider_pill_text but at reduced opacity, for secondary text. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#99000000" android:state_focused="true"/>
+    <item android:color="#80FFFFFF"/>
+</selector>

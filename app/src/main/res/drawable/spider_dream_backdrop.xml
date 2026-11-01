@@ -1,0 +1,6 @@
+<!-- Screensaver backdrop: dark violet centre fading to near-black edges. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:type="radial" android:gradientRadius="100%p"
+        android:centerX="50%" android:centerY="40%"
+        android:startColor="#1A1828" android:endColor="#050508"/>
+</shape>

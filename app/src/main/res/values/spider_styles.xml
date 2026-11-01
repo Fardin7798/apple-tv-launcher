@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spider theme text styles. includeFontPadding=false puts the baseline at top + ascent, as FigCraft does. -->
+<resources>
+    <style name="SpiderText">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">@font/spider_inter_medium</item>
+    </style>
+    <style name="SpiderText.Greeting">
+        <item name="android:textSize">@dimen/spider_text_greeting</item>
+        <item name="android:textColor">@color/spider_text_greeting</item>
+    </style>
+    <style name="SpiderText.Clock">
+        <item name="android:textSize">@dimen/spider_text_clock</item>
+        <item name="android:textColor">@color/spider_text_clock</item>
+    </style>
+    <style name="SpiderText.Date">
+        <item name="android:fontFamily">@font/spider_oswald_medium</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">#BEBAD7</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+    <style name="SpiderText.Pill">
+        <item name="android:textSize">@dimen/spider_text_pill</item>
+        <item name="android:textColor">@color/spider_text_pill</item>
+    </style>
+    <style name="SpiderText.Title">
+        <item name="android:fontFamily">@font/spider_inter_bold</item>
+        <item name="android:textSize">@dimen/spider_text_title</item>
+        <item name="android:textColor">@color/spider_text_title</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+</resources>
