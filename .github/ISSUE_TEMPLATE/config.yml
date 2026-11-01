@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Setup guide
+    url: https://github.com/Fardin7798/Spider-Tv-Launcher#readme
+    about: Check the README setup steps before opening an issue.

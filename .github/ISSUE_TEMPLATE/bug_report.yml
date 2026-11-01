@@ -1,0 +1,51 @@
+name: 🐞 Bug report
+description: Something doesn't work on your TV
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! The more details you give, the faster we can fix it.
+  - type: input
+    id: device
+    attributes:
+      label: TV model
+      placeholder: e.g. Xiaomi TV A Pro 43, Chromecast with Google TV
+    validations:
+      required: true
+  - type: input
+    id: android
+    attributes:
+      label: Android TV / Google TV version
+      placeholder: e.g. Android TV 11
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Spider TV Launcher version
+      placeholder: e.g. v1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Press Home
+        2. Open Recents
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots (optional)
+      description: "`adb logcat -d | grep -i spider` output or a photo of the screen."
+      render: shell
