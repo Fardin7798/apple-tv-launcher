@@ -1,0 +1,27 @@
+name: 💡 Feature request
+description: Suggest an idea, a new suit or a TV profile
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of idea is it?
+      options:
+        - New feature
+        - New suit / theme
+        - New TV debloat profile
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Describe your idea
+      description: What should it do, and why would it help?
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else? (optional)
+      description: Mockups, examples or the TV model it's for.

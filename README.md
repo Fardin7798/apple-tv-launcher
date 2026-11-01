@@ -168,6 +168,10 @@ To restore your TV back to its exact untouched factory state:
 - 🎮 Remote double-press Home gesture
 - 🧹 Audit, debloat, backup and full restore scripts with per-brand profiles
 
+## 🤝 Contributing
+
+Contributions are welcome! Report a bug, suggest a new suit, add a debloat profile for your TV, or pick up a `good first issue`. Read the [Contributing guide](CONTRIBUTING.md) to get started, and please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## ⚖️ Fan-Made Project & Legal Disclaimer
 
 Spider TV Launcher is an **unofficial, fan-made tribute**: an independent, non-commercial, open-source project for personal TV customization.
